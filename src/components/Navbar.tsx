@@ -2,7 +2,7 @@ import React from "react";
 
 const Navbar = () => {
   return (
-    <div className="navbar">
+    <div className="main-padding navbar">
       <h2 className="head-1">Make MyNews your homepage</h2>
       <h2 className="head-2">
         Every day discover what's trending on the internet!

@@ -4,9 +4,13 @@
 
 @import "../src/styles/tags";
 
-@import "../src/styles/base";
+@import "../src/styles/base/base";
+@import "../src/styles/base/typography";
 
-@import "../src/styles/components/app";
+@import "../src/styles/layouts";
+
 @import "../src/styles/components/navbar";
 @import "../src/styles/components/search";
+@import "../src/styles/components/mainContent";
+@import "../src/styles/components/sidebar";
 

@@ -1,0 +1,27 @@
+.sidebar{
+    flex: 0 0 5%;
+    display: flex;
+    flex-direction: column;
+    .link{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        width: 6.3rem;
+        height: 6.3rem;
+        color: $primary-header-color;
+        opacity: 0.5;
+        font-family: $interV_Semi;
+        font-size: 1rem;
+
+    }
+    .active{
+        background: $primary-color;
+        border-radius: 5px;
+        color: $primary-red;
+    }
+    img{
+        margin-bottom: 0.5rem;
+    }
+}

@@ -4,7 +4,7 @@ import { Home } from "./pages";
 
 function App() {
   return (
-    <main className="app">
+    <main>
       <Navbar />
       <Search />
       <MainContent />
