@@ -3,13 +3,11 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 1em 10%;
+    padding: 1rem 10%;
     filter: $primary-shadow;
     width: 100%;
     background-image: url("../../assets/img/Header_img.png");
     background-size: cover;
-
-    font-size: 1.4rem;
     .head-1{
         font-size: 1.6rem;
         font-family: $interV_Bold;
@@ -19,7 +17,8 @@
         font-family: $interV;
         text-shadow: $primary-shadow;
         color: $text-color;
-        margin-right: 8em;
+        margin-right: 15rem;
+        font-size: 1.4rem;
     }
     .btn-nav{
         width: 7rem;
@@ -27,11 +26,14 @@
         background-color: $primary-color;
         color: $primary-header-color;
         font-family: $interV_Bold;
-        margin-right: 1em;
+        font-size: 1.4rem;
+        margin-left: 7rem;
     }
     .head-3{
         color: $primary-color;
         filter: $primary-shadow $primary-shadow;
         font-family: $interV_Bold;
+        font-size: 1.4rem;
+        margin-right: 10rem;
     }
 }

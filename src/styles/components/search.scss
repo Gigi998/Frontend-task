@@ -1,43 +1,67 @@
-.search{
+.search-container{
     flex: 0 0 10%;
     width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    padding: 1rem 10%;
-    &-container{
+    .search{
+        padding: 3rem 10%;
         display: flex;
         align-items: center;
-        width: 70rem;
-        margin-left: 10rem;
-        border:1px solid $primary-color;
-        border-radius: 10px;
-        background-color: $primary-color;
-        height: 5rem;
-        padding: 1rem;
-        color: $primary-header-color
-
-    }
-    .header{
-        font-weight: 900;
-        font-size: 3.2rem;
-        color: $primary-red;
-    }
-    span{
-        color: $primary-header-color;
-        font-weight: 900;
-    }
-    .input{
-        border: none;
-        border-color: transparent;
-        background-color: transparent;
-        margin-right: auto;
-        font-size: 1.5rem;
-        &:focus{
-            outline:none;
+        justify-content: flex-start;
+        .form-container{
+            display: flex;
+            align-items: center;
+            width: 70rem;
+            margin-left: 10rem;
+            border:1px solid $primary-color;
+            border-radius: 10px;
+            background-color: $primary-color;
+            height: 5rem;
+            padding: .5rem;
+        }
+        .head-1 {
+            font-weight: 900;
+            font-style: normal;
+            font-family: $interV;
+            font-size: 3.2rem;
+            color: $primary-red;
+        }
+        .head-2{
+            font-weight: 900;
+            font-style: normal;
+            font-size: 3.2rem;
+            font-family: $interV;
+            color: $primary-header-color;
+        }
+        .input{
+            border: none;
+            border-color: transparent;
+            background-color: transparent;
+            margin-right: auto;
+            font-size: 1.5rem;
+            font-family: $interV;
+            opacity: 0.4;
+            &:focus{
+                outline:none;
+            }
+        }
+        .img{
+            margin: 1.5rem;
+            opacity: 0.4;
+            
+        }
+        .btn-search{
+            border-radius: 6px;
+            background-color: $primary-red;
+            color: $primary-color;
+            font-family: $interV_Bold;
+            width: 9.5rem;
+            height: 4rem;
+            
         }
     }
-    .img{
-        margin-right: 1rem;
+    .hr-line {
+        height: 0.1rem;
+        width: 80%;
+        opacity: 0.1;
+        margin: 0 10%;
     }
 }
