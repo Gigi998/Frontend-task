@@ -1,0 +1,30 @@
+.article-container{
+    background-color: $primary-color;
+    max-height: 40rem;
+    img{
+        display: block;
+        width: 100%;
+        height: auto;
+        max-height: 20rem;
+        border-radius: $border-radius-img;
+    }
+    .category{
+        font-family: $interV_Bold;
+        color:$primary-blue-color;
+    }
+    .title{
+        font-family: $interV_Medium;
+        font-size: 1.6rem;
+        color: $text-color;
+    }
+    .author{
+        font-family: $interV;
+        font-size: 1.2rem;
+        color: $primary-header-color;
+    }
+    .info-container{
+        margin: 1.2rem;
+        display: flex;
+        flex-direction: column;
+    }
+}

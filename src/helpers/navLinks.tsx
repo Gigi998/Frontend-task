@@ -52,7 +52,7 @@ const navLinks = [
   {
     id: 6,
     text: "Sport",
-    path: "sport",
+    path: "sports",
     svg: SportLogo,
     svgR: SportLogoR,
   },

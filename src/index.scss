@@ -7,10 +7,12 @@
 @import "../src/styles/base/base";
 @import "../src/styles/base/typography";
 
+@import "../src/styles/pages/news";
+
 @import "../src/styles/layouts";
 
 @import "../src/styles/components/navbar";
 @import "../src/styles/components/search";
 @import "../src/styles/components/mainContent";
 @import "../src/styles/components/sidebar";
-
+@import "../src/styles/components/article";

@@ -1,0 +1,16 @@
+.news-page{
+    padding: 0 0 0 2.5rem;
+    width: 100%;
+    .title{
+        font-size: 1.8rem;
+        font-family: $interV_Semi;
+        color: $primary-header-color;
+        margin-bottom: 2.5rem;
+    }
+    .articles-container{
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(5,1fr);
+        gap: 2.2rem;
+    }
+}
