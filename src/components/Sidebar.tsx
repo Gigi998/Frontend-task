@@ -1,5 +1,4 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
 import navLinks from "../helpers/navLinks";
 import { NavLink } from "react-router-dom";
 
@@ -7,16 +6,21 @@ const Sidebar = () => {
   return (
     <div className="sidebar">
       {navLinks.map((link) => {
-        const { id, text, path, svg } = link;
+        const { id, text, path, svg, svgR } = link;
         return (
           <NavLink
             key={id}
             to={path}
             className={({ isActive }) => (isActive ? "link active" : "link")}
-          >
-            <img src={svg} alt={text} className="active" />
-            {text}
-          </NavLink>
+            children={({ isActive }) => {
+              return (
+                <>
+                  <img src={isActive ? svgR : svg} alt={text} />
+                  {text}
+                </>
+              );
+            }}
+          />
         );
       })}
     </div>
