@@ -6,11 +6,22 @@
         font-family: $interV_Semi;
         color: $primary-header-color;
         margin-bottom: 2.5rem;
+        text-transform: capitalize;
     }
     .articles-container{
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        grid-template-rows: repeat(5,1fr);
+        grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
         gap: 2.2rem;
+    }
+    .scroll-container{
+        grid-column: 3/4;
+        grid-row: 1/3;
+        background-color: $primary-color;
+        border-radius: 12px;
+        padding: 1.8rem 2.5rem 1.5rem 1.5rem;
+        .scroll-content{
+            display: flex;
+            flex-direction: column;
+        }
     }
 }

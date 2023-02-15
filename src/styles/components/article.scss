@@ -1,16 +1,21 @@
 .article-container{
     background-color: $primary-color;
-    max-height: 40rem;
+    height: 30rem;
+    display: flex;
+    flex-direction: column;
     img{
         display: block;
         width: 100%;
-        height: auto;
-        max-height: 20rem;
-        border-radius: $border-radius-img;
+        height: 45%;
+        object-fit: cover;
+        object-position: top;
+        border-top-left-radius: $border-radius-img;
+        border-top-right-radius: $border-radius-img;
     }
     .category{
         font-family: $interV_Bold;
         color:$primary-blue-color;
+        margin-bottom: 1rem;
     }
     .title{
         font-family: $interV_Medium;
@@ -21,6 +26,7 @@
         font-family: $interV;
         font-size: 1.2rem;
         color: $primary-header-color;
+        margin-top: 3rem;
     }
     .info-container{
         margin: 1.2rem;
