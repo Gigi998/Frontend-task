@@ -10,26 +10,26 @@
     .head-1{
         font-size: 1.6rem;
         font-family: $interV_Bold;
-        color: $primary-color;
+        color: $primary-white;
     }
     .head-2{
         font-family: $interV;
         text-shadow: $primary-shadow;
-        color: $text-color;
+        color: $primary-black;
         margin-right: 15rem;
         font-size: 1.4rem;
     }
     .btn-nav{
         width: 7rem;
         height: 4rem;
-        background-color: $primary-color;
-        color: $primary-header-color;
+        background-color: $primary-white;
+        color: $primary-black-light;
         font-family: $interV_Bold;
         font-size: 1.4rem;
         margin-left: 7rem;
     }
     .head-3{
-        color: $primary-color;
+        color: $primary-white;
         filter: $primary-shadow $primary-shadow;
         font-family: $interV_Bold;
         font-size: 1.4rem;

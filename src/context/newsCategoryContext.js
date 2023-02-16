@@ -6,7 +6,7 @@ import {
   GET_NEWS_CATEGORY_SUCCESS,
   GET_NEWS_CATEGORY_ERROR,
   SET_CATEGORY,
-} from "../actions";
+} from "../helpers/actions";
 
 const initialState = {
   newsCategoryLoading: false,

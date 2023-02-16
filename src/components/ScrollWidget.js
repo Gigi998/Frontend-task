@@ -1,6 +1,7 @@
 import React, { useState, useRef, useCallback } from "react";
 import { MdArrowForwardIos } from "react-icons/md";
 import useFetchInfinite from "../hooks/useFetchInfinite";
+import { formatTime } from "../helpers/formatTime";
 
 const ScrollWidget = () => {
   const [pageNumber, setPageNumber] = useState(1);
@@ -25,26 +26,35 @@ const ScrollWidget = () => {
 
   return (
     <div className="scroll-container">
-      <h2>latest news</h2>
-      <div className="scroll-content">
+      <div className="title-container">
+        <span className="dot"></span>
+        <span className="inner-dot"></span>
+        <h2 className="main-title">Latest news</h2>
+      </div>
+      <div className="content">
         {newsList.map((n, index) => {
           const { title, publishedAt } = n;
           if (newsList.length === index + 1) {
             return (
-              <div ref={lastElement} key={Math.random() * 10000}>
-                {title}
+              <div className="single-news" key={index}>
+                <h1 ref={lastElement}>{formatTime(publishedAt)}</h1>
+                <p>{title.length > 40 ? title.slice(0, 40) : `${title}...`}</p>
               </div>
             );
           } else {
-            <div key={Math.random() * 10000}>{title}</div>;
+            return (
+              <div className="single-news" key={index}>
+                <h1>{formatTime(publishedAt)}</h1>
+                <p>{title.length > 40 ? title.slice(0, 40) : `${title}...`}</p>
+              </div>
+            );
           }
         })}
       </div>
-      <button>
+      <button className="scroll-btn btn">
         See all news
-        <MdArrowForwardIos />
+        <MdArrowForwardIos className="icon" />
       </button>
-      ;
     </div>
   );
 };

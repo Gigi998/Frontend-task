@@ -11,9 +11,9 @@
             align-items: center;
             width: 70rem;
             margin-left: 10rem;
-            border:1px solid $primary-color;
+            border:1px solid $primary-white;
             border-radius: 10px;
-            background-color: $primary-color;
+            background-color: $primary-white;
             height: 5rem;
             padding: .5rem;
         }
@@ -29,7 +29,7 @@
             font-style: normal;
             font-size: 3.2rem;
             font-family: $interV;
-            color: $primary-header-color;
+            color: $primary-black-light;
         }
         .input{
             border: none;
@@ -51,7 +51,7 @@
         .btn-search{
             border-radius: 6px;
             background-color: $primary-red;
-            color: $primary-color;
+            color: $primary-white;
             font-family: $interV_Bold;
             width: 9.5rem;
             height: 4rem;

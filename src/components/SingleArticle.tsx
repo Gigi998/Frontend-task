@@ -12,9 +12,15 @@ const SingleArtilce = ({ author, title, urlToImage }) => {
       <div className="info-container">
         <h2 className="category">CATEGORY</h2>
         <h2 className="title">
-          {title.length > 70 ? `${title.slice(0, 70)}...` : title}
+          {title.length > 60 ? `${title.slice(0, 60)}...` : title}
         </h2>
-        <h2 className="author">{author === null ? "unknown" : author}</h2>
+        <h2 className="author">
+          {author === null
+            ? "unknown"
+            : author.length > 60
+            ? author.slice(0, 60)
+            : `${author}...`}
+        </h2>
       </div>
     </div>
   );

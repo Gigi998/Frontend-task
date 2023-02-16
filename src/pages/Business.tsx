@@ -3,8 +3,8 @@ import { useNewsCategoryContext } from "../context/newsCategoryContext";
 import { Loading, CategoryPageComp } from "../components";
 import { urlCategory } from "../helpers/urls";
 
-// const api = "9370eb68c6004acd940c8644a2689e0c";
-const api = "150934a1060e4e93939ce31724e99b59";
+const api = "9370eb68c6004acd940c8644a2689e0c";
+// const api = "150934a1060e4e93939ce31724e99b59";
 const Business = () => {
   const { fetchByCategory, category, newsCategoryLoading, newsCategory } =
     useNewsCategoryContext();

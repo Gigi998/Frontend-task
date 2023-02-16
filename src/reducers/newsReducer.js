@@ -1,4 +1,8 @@
-import { GET_NEWS_BEGIN, GET_NEWS_SUCCESS, GET_NEWS_ERROR } from "../actions";
+import {
+  GET_NEWS_BEGIN,
+  GET_NEWS_SUCCESS,
+  GET_NEWS_ERROR,
+} from "../helpers/actions";
 
 const newsReducer = (state, action) => {
   if (action.type === GET_NEWS_BEGIN) {

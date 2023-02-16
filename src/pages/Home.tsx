@@ -19,7 +19,7 @@ const Home = () => {
       <h1 className="title">News</h1>
       <div className="articles-container">
         <ScrollWidget />
-        {news.slice(0, 18).map((article) => {
+        {news.slice(0, 16).map((article) => {
           return <SingleArticle key={Math.random() * 10000} {...article} />;
         })}
       </div>

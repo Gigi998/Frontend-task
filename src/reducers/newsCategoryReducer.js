@@ -3,7 +3,7 @@ import {
   GET_NEWS_CATEGORY_SUCCESS,
   GET_NEWS_CATEGORY_ERROR,
   SET_CATEGORY,
-} from "../actions";
+} from "../helpers/actions";
 
 const newsCategoryReducer = (state, action) => {
   if (action.type === GET_NEWS_CATEGORY_BEGIN) {

@@ -1,6 +1,10 @@
 import React, { useContext, useEffect, useReducer } from "react";
 import newsReducer from "../reducers/newsReducer";
-import { GET_NEWS_BEGIN, GET_NEWS_SUCCESS, GET_NEWS_ERROR } from "../actions";
+import {
+  GET_NEWS_BEGIN,
+  GET_NEWS_SUCCESS,
+  GET_NEWS_ERROR,
+} from "../helpers/actions";
 import axios from "axios";
 
 const initialState = {

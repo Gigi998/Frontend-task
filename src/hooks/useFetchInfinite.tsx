@@ -1,10 +1,7 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import axios from "axios";
-
-// everything api
-const API =
-  "https://newsapi.org/v2/everything?q=latest&sortBy=publishedAt&pageSize=20&page=2&apiKey=150934a1060e4e93939ce31724e99b59";
+import { infiniteUrl } from "../helpers/urls";
 
 const useFetchInfinite = (pageNumber) => {
   const [loading, setLoading] = useState(true);
@@ -17,7 +14,7 @@ const useFetchInfinite = (pageNumber) => {
     setError(false);
     let cancel;
     axios({
-      url: `https://newsapi.org/v2/everything?q=latest&sortBy=publishedAt&pageSize=20&page=${pageNumber}&apiKey=150934a1060e4e93939ce31724e99b59`,
+      url: `https://newsapi.org/v2/everything?q=latest&sortBy=publishedAt&pageSize=8&page=${pageNumber}&apiKey=9370eb68c6004acd940c8644a2689e0c`,
       method: "GET",
       headers: {
         accept: "application/json",
@@ -28,7 +25,6 @@ const useFetchInfinite = (pageNumber) => {
         setNewsList((prev) => {
           return [...prev, ...res.data.articles];
         });
-        console.log(res.data.articles);
         setHasMore(res.data.articles.length > 0);
         setLoading(false);
       })
