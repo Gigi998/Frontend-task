@@ -1,7 +1,7 @@
 import React from "react";
 import DefaultImg from "../assets/img/NoImage.jpg";
 
-const SingleArtilce = ({ author, title, urlToImage }) => {
+const SingleArtilce = ({ author, title, urlToImage, category }) => {
   return (
     <div className="article-container">
       {urlToImage === null ? (
@@ -10,7 +10,7 @@ const SingleArtilce = ({ author, title, urlToImage }) => {
         <img src={urlToImage} alt="something" />
       )}
       <div className="info-container">
-        <h2 className="category">CATEGORY</h2>
+        <h2 className="category">{category}</h2>
         <h2 className="title">
           {title.length > 60 ? `${title.slice(0, 60)}...` : title}
         </h2>

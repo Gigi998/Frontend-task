@@ -1,16 +1,32 @@
 import React, { useEffect } from "react";
-import { useNewsContext } from "../context/newsContext";
 import { SingleArticle, Loading, ScrollWidget } from "../components";
-import { allNewsUrl } from "../helpers/urls";
+import { useNewsCategoryContext } from "../context/newsCategoryContext";
+import { urlCategory, api6 } from "../helpers/urls";
+import { categoriesArray } from "../helpers/categories";
 
 const Home = () => {
-  const { news, newsLoading, fetchNews } = useNewsContext();
+  const {
+    fetchByCategory,
+    newsCategoryLoading,
+    newsArray,
+    clearOldNews,
+    sortLatestNews,
+    getNewsArray,
+  } = useNewsCategoryContext();
 
   useEffect(() => {
-    fetchNews(allNewsUrl);
+    clearOldNews();
+    categoriesArray.forEach((cat) => {
+      return fetchByCategory(urlCategory, cat, api6);
+    });
+    getNewsArray();
   }, []);
 
-  if (newsLoading) {
+  useEffect(() => {
+    sortLatestNews();
+  }, [newsArray]);
+
+  if (newsCategoryLoading) {
     return <Loading />;
   }
 
@@ -18,8 +34,8 @@ const Home = () => {
     <div className="news-page">
       <h1 className="title">News</h1>
       <div className="articles-container">
-        <ScrollWidget />
-        {news.slice(0, 16).map((article) => {
+        {/* <ScrollWidget /> */}
+        {newsArray.slice(0, 16).map((article) => {
           return <SingleArticle key={Math.random() * 10000} {...article} />;
         })}
       </div>

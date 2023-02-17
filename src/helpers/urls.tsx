@@ -1,20 +1,31 @@
 import React from "react";
 
-// Fetch by category api
-export const urlCategory = `https://newsapi.org/v2/top-headlines?country=us&`;
-
-// News api
-export const allNews = `https://newsapi.org/v2/everything?q=musk
-    &pageSize=50&sortBy=publishedAt&apiKey=9370eb68c6004acd940c8644a2689e0c`;
-
-// All news api
-export const allNewsUrl = ` https://newsapi.org/v2/top-headlines?country=us&apiKey=9370eb68c6004acd940c8644a2689e0c`;
-
 // API1
 export const api1 = "9370eb68c6004acd940c8644a2689e0c";
 // API2
 export const api2 = "150934a1060e4e93939ce31724e99b59";
 
+// API3
+export const api3 = "2bf2ae98bc6b49e3907e4d43a29310fa";
+
+// api4
+export const api4 = "89ddc7cbace24120a418f9d5f5e5d0df";
+
+// api5
+export const api5 = "dc6e12c6bf5f4c66ab4c2db556ca9472";
+
+// api6
+export const api6 = "872c19404fea43a79c8c5bd4bcb5366f";
+
+// Fetch by category api
+export const urlCategory = `https://newsapi.org/v2/top-headlines?country=us&`;
+
+// News api
+export const allNews = `https://newsapi.org/v2/everything?q=latest
+    &pageSize=50&sortBy=publishedAt&apiKey=${api3}`;
+
+// All news api
+export const allNewsUrl = ` https://newsapi.org/v2/top-headlines?country=us&apiKey=${api1}`;
+
 // Infinite scroll api
-export const infiniteUrl =
-  "https://newsapi.org/v2/everything?q=latest&sortBy=publishedAt&pageSize=20&page=2&apiKey=9370eb68c6004acd940c8644a2689e0c";
+export const infiniteUrl = `https://newsapi.org/v2/everything?q=latest&sortBy=publishedAt&pageSize=20&page=2&apiKey=${api3}`;

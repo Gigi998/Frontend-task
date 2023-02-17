@@ -2,6 +2,7 @@ import {
   GET_NEWS_BEGIN,
   GET_NEWS_SUCCESS,
   GET_NEWS_ERROR,
+  NEWS_HANDLE_CHANGE,
 } from "../helpers/actions";
 
 const newsReducer = (state, action) => {
@@ -16,6 +17,12 @@ const newsReducer = (state, action) => {
       ...state,
       newsLoading: false,
       news: action.payload,
+    };
+  }
+  if (action.type === NEWS_HANDLE_CHANGE) {
+    return {
+      ...state,
+      query: action.payload,
     };
   }
   throw new Error(`No Matching "${action.type}" - action type`);

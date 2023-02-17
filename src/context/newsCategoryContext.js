@@ -1,17 +1,30 @@
-import React, { useContext, useEffect, useReducer } from "react";
+import React, { useContext, useReducer } from "react";
 import axios from "axios";
 import newsCategoryReducer from "../reducers/newsCategoryReducer";
 import {
   GET_NEWS_CATEGORY_BEGIN,
-  GET_NEWS_CATEGORY_SUCCESS,
+  GET_NEWS_CATEGORY_HEALTH_SUCCESS,
+  GET_NEWS_CATEGORY_GENERAL_SUCCESS,
+  GET_NEWS_CATEGORY_BUSINESS_SUCCESS,
+  GET_NEWS_CATEGORY_SCIENCE_SUCCESS,
+  GET_NEWS_CATEGORY_SPORT_SUCCESS,
+  GET_NEWS_CATEGORY_TECHNOLOGY_SUCCESS,
   GET_NEWS_CATEGORY_ERROR,
-  SET_CATEGORY,
+  CLEAR_OLD_NEWS,
+  SORT_LATEST_NEWS,
+  GET_NEWS_ARRAY,
 } from "../helpers/actions";
 
 const initialState = {
   newsCategoryLoading: false,
   newsCategoryError: false,
-  newsCategory: [],
+  newsArray: [],
+  newsGeneral: [],
+  newsBusiness: [],
+  newsHealth: [],
+  newsScience: [],
+  newsSport: [],
+  newsTech: [],
   category: "",
 };
 
@@ -27,19 +40,62 @@ export const NewsCategoryProvider = ({ children }) => {
         `${url}category=${category}&apiKey=${api}`
       );
       const news = response.data.articles;
-      dispatch({ type: GET_NEWS_CATEGORY_SUCCESS, payload: news });
+      if (category === "general")
+        return dispatch({
+          type: GET_NEWS_CATEGORY_GENERAL_SUCCESS,
+          payload: news,
+        });
+      if (category === "health")
+        return dispatch({
+          type: GET_NEWS_CATEGORY_HEALTH_SUCCESS,
+          payload: news,
+        });
+      if (category === "business")
+        return dispatch({
+          type: GET_NEWS_CATEGORY_BUSINESS_SUCCESS,
+          payload: news,
+        });
+      if (category === "science")
+        return dispatch({
+          type: GET_NEWS_CATEGORY_SCIENCE_SUCCESS,
+          payload: news,
+        });
+      if (category === "sport")
+        return dispatch({
+          type: GET_NEWS_CATEGORY_SPORT_SUCCESS,
+          payload: news,
+        });
+      if (category === "technology")
+        return dispatch({
+          type: GET_NEWS_CATEGORY_TECHNOLOGY_SUCCESS,
+          payload: news,
+        });
     } catch (error) {
       dispatch({ type: GET_NEWS_CATEGORY_ERROR });
     }
   };
 
-  const setCategory = (category) => {
-    dispatch({ type: SET_CATEGORY, payload: category });
+  const clearOldNews = () => {
+    dispatch({ type: CLEAR_OLD_NEWS });
+  };
+
+  const sortLatestNews = () => {
+    dispatch({ type: SORT_LATEST_NEWS });
+  };
+
+  const getNewsArray = () => {
+    dispatch({ type: GET_NEWS_ARRAY });
   };
 
   return (
     <NewsCategoryContext.Provider
-      value={{ ...state, fetchByCategory, setCategory }}
+      value={{
+        ...state,
+        fetchByCategory,
+        clearOldNews,
+        sortLatestNews,
+        getNewsArray,
+      }}
     >
       {children}
     </NewsCategoryContext.Provider>

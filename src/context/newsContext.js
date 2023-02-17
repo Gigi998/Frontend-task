@@ -4,6 +4,7 @@ import {
   GET_NEWS_BEGIN,
   GET_NEWS_SUCCESS,
   GET_NEWS_ERROR,
+  NEWS_HANDLE_CHANGE,
 } from "../helpers/actions";
 import axios from "axios";
 
@@ -11,6 +12,7 @@ const initialState = {
   newsLoading: false,
   newsError: false,
   news: [],
+  query: "news",
 };
 
 const NewsContext = React.createContext();
@@ -29,8 +31,12 @@ export const NewsProvider = ({ children }) => {
     }
   };
 
+  const handleChange = (value) => {
+    dispatch({ type: NEWS_HANDLE_CHANGE, payload: value });
+  };
+
   return (
-    <NewsContext.Provider value={{ ...state, fetchNews }}>
+    <NewsContext.Provider value={{ ...state, fetchNews, handleChange }}>
       {children}
     </NewsContext.Provider>
   );

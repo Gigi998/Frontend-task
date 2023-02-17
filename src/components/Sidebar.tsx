@@ -1,10 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import navLinks from "../helpers/navLinks";
 import { NavLink } from "react-router-dom";
-import { useNewsCategoryContext } from "../context/newsCategoryContext";
 
 const Sidebar = () => {
-  const { setCategory } = useNewsCategoryContext();
   return (
     <div className="sidebar">
       {navLinks.map((link) => {
@@ -13,7 +11,6 @@ const Sidebar = () => {
           <NavLink
             key={id}
             to={path}
-            onClick={() => setCategory(path)}
             className={({ isActive }) => (isActive ? "link active" : "link")}
             children={({ isActive }) => {
               return (
