@@ -3,13 +3,13 @@ import { useNewsCategoryContext } from "../context/newsCategoryContext";
 import { Loading, CategoryPageComp } from "../components";
 
 const Sports = () => {
-  const { category, newsCategoryLoading, newsSport } = useNewsCategoryContext();
+  const { newsCategoryLoading, newsSport } = useNewsCategoryContext();
 
   if (newsCategoryLoading) {
     return <Loading />;
   }
 
-  return <CategoryPageComp category={category} newsCategory={newsSport} />;
+  return <CategoryPageComp newsCategory={newsSport} />;
 };
 
 export default Sports;

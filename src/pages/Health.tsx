@@ -3,14 +3,13 @@ import { useNewsCategoryContext } from "../context/newsCategoryContext";
 import { Loading, CategoryPageComp } from "../components";
 
 const Health = () => {
-  const { category, newsCategoryLoading, newsHealth } =
-    useNewsCategoryContext();
+  const { newsCategoryLoading, newsHealth } = useNewsCategoryContext();
 
   if (newsCategoryLoading) {
     return <Loading />;
   }
 
-  return <CategoryPageComp category={category} newsCategory={newsHealth} />;
+  return <CategoryPageComp newsCategory={newsHealth} />;
 };
 
 export default Health;

@@ -1,4 +1,4 @@
-import React, { useContext, useReducer } from "react";
+import React, { useContext, useEffect, useReducer } from "react";
 import axios from "axios";
 import newsCategoryReducer from "../reducers/newsCategoryReducer";
 import {
@@ -13,6 +13,8 @@ import {
   CLEAR_OLD_NEWS,
   SORT_LATEST_NEWS,
   GET_NEWS_ARRAY,
+  HANDLE_SEARCH,
+  UPDATE_ARRAY,
 } from "../helpers/actions";
 
 const initialState = {
@@ -25,7 +27,7 @@ const initialState = {
   newsScience: [],
   newsSport: [],
   newsTech: [],
-  category: "",
+  query: "",
 };
 
 const NewsCategoryContext = React.createContext();
@@ -87,6 +89,10 @@ export const NewsCategoryProvider = ({ children }) => {
     dispatch({ type: GET_NEWS_ARRAY });
   };
 
+  const handleSearch = (value) => {
+    dispatch({ type: HANDLE_SEARCH, payload: value });
+  };
+
   return (
     <NewsCategoryContext.Provider
       value={{
@@ -95,6 +101,7 @@ export const NewsCategoryProvider = ({ children }) => {
         clearOldNews,
         sortLatestNews,
         getNewsArray,
+        handleSearch,
       }}
     >
       {children}

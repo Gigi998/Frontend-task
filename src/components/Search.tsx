@@ -1,9 +1,9 @@
 import React from "react";
 import SearchLogo from "../assets/img/Search.svg";
-import { useNewsContext } from "../context/newsContext";
+import { useNewsCategoryContext } from "../context/newsCategoryContext";
 
 const Search = () => {
-  const { handleChange, query } = useNewsContext();
+  const { query, handleSearch } = useNewsCategoryContext();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -21,7 +21,7 @@ const Search = () => {
             type="text"
             placeholder="Search news"
             className="input"
-            onChange={(e) => handleChange(e.target.value)}
+            onChange={(e) => handleSearch(e.target.value)}
             value={query}
           />
           <button className="btn btn-search">Search</button>

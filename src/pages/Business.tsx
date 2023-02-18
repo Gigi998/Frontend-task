@@ -3,14 +3,13 @@ import { useNewsCategoryContext } from "../context/newsCategoryContext";
 import { Loading, CategoryPageComp } from "../components";
 
 const Business = () => {
-  const { category, newsCategoryLoading, newsBusiness } =
-    useNewsCategoryContext();
+  const { newsCategoryLoading, newsBusiness } = useNewsCategoryContext();
 
   if (newsCategoryLoading) {
     return <Loading />;
   }
 
-  return <CategoryPageComp category={category} newsCategory={newsBusiness} />;
+  return <CategoryPageComp newsCategory={newsBusiness} />;
 };
 
 export default Business;

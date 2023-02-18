@@ -1,30 +1,52 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { SingleArticle, Loading, ScrollWidget } from "../components";
 import { useNewsCategoryContext } from "../context/newsCategoryContext";
-import { urlCategory, api6 } from "../helpers/urls";
+import { urlCategory, api5 } from "../helpers/urls";
 import { categoriesArray } from "../helpers/categories";
 
-const Home = () => {
+const HomePage = () => {
   const {
     fetchByCategory,
     newsCategoryLoading,
     newsArray,
-    clearOldNews,
     sortLatestNews,
     getNewsArray,
+    clearOldNews,
+    query,
+    newsGeneral,
+    newsScience,
+    newsSport,
+    newsBusiness,
+    newsTech,
   } = useNewsCategoryContext();
 
   useEffect(() => {
-    clearOldNews();
     categoriesArray.forEach((cat) => {
-      return fetchByCategory(urlCategory, cat, api6);
+      return fetchByCategory(urlCategory, cat, api5);
     });
-    getNewsArray();
   }, []);
 
   useEffect(() => {
+    getNewsArray();
+  }, [
+    newsSport,
+    newsScience,
+    newsGeneral,
+    newsScience,
+    newsBusiness,
+    newsTech,
+  ]);
+
+  useEffect(() => {
     sortLatestNews();
-  }, [newsArray]);
+  }, [
+    newsSport,
+    newsScience,
+    newsGeneral,
+    newsScience,
+    newsBusiness,
+    newsTech,
+  ]);
 
   if (newsCategoryLoading) {
     return <Loading />;
@@ -34,7 +56,7 @@ const Home = () => {
     <div className="news-page">
       <h1 className="title">News</h1>
       <div className="articles-container">
-        {/* <ScrollWidget /> */}
+        <ScrollWidget />
         {newsArray.slice(0, 16).map((article) => {
           return <SingleArticle key={Math.random() * 10000} {...article} />;
         })}
@@ -43,4 +65,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default HomePage;

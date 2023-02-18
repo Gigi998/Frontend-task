@@ -1,11 +1,14 @@
-.news-page{
-    padding: 0 0 0 2.5rem;
-    width: 100%;
+.page-content {
+    display: flex;
+    margin: 2.4rem 10%; 
+    .news-page{
+        flex: 1;
+        margin-left: 2.5rem;
     .title{
         font-size: 1.8rem;
         font-family: $interV_Semi;
         color: $primary-black-light;
-        margin-bottom: 2.5rem;
+        margin-bottom: 1.6rem;
         text-transform: capitalize;
     }
     .articles-container{
@@ -13,4 +16,5 @@
         grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
         gap: 2.2rem;
     }
+}
 }

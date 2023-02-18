@@ -12,7 +12,7 @@ const initialState = {
   newsLoading: false,
   newsError: false,
   news: [],
-  query: "news",
+  query: "",
 };
 
 const NewsContext = React.createContext();

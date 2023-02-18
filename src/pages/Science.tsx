@@ -10,7 +10,7 @@ const Science = () => {
     return <Loading />;
   }
 
-  return <CategoryPageComp category={category} newsCategory={newsScience} />;
+  return <CategoryPageComp newsCategory={newsScience} />;
 };
 
 export default Science;
