@@ -3,7 +3,7 @@ import { ScrollWidget, SingleArticle } from "../components";
 import { useNewsCategoryContext } from "../context/newsCategoryContext";
 import { useLocation } from "react-router-dom";
 import { categoriesArray } from "../helpers/navLinks";
-import { urlCategory, api7 } from "../helpers/urls";
+import { urlCategory, api3 } from "../helpers/urls";
 
 const CategoryPageComp = ({ newsCategory }) => {
   const {
@@ -26,8 +26,9 @@ const CategoryPageComp = ({ newsCategory }) => {
 
   useEffect(() => {
     categoriesArray.forEach((cat) => {
-      return fetchByCategory(urlCategory, cat, api7);
+      return fetchByCategory(urlCategory, cat, api3);
     });
+    // fetchByCategory(urlCategory, location.pathname.slice(1), api3);
   }, []);
 
   useEffect(() => {

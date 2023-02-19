@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useReducer } from "react";
+import React, { useContext, useReducer } from "react";
 import axios from "axios";
 import newsCategoryReducer from "../reducers/newsCategoryReducer";
 import {
@@ -13,14 +13,22 @@ import {
   SORT_LATEST_NEWS,
   GET_NEWS_ARRAY,
   HANDLE_SEARCH,
-  UPDATE_ARRAY,
   GET_CURRENT_LOCATION,
+  ADD_TO_FAVORITES,
 } from "../helpers/actions";
 
 const initialState = {
   newsCategoryLoading: false,
   newsCategoryError: false,
   newsArray: [],
+  newsCattegories: [
+    { category: "general", array: [] },
+    { category: "business", array: [] },
+    { category: "health", array: [] },
+    { category: "science", array: [] },
+    { category: "sport", array: [] },
+    { category: "technology", array: [] },
+  ],
   newsGeneral: [],
   newsBusiness: [],
   newsHealth: [],
@@ -30,6 +38,7 @@ const initialState = {
   query: "",
   filterArray: [],
   currentLocation: "",
+  favoritesArray: [],
 };
 
 const NewsCategoryContext = React.createContext();
@@ -99,6 +108,10 @@ export const NewsCategoryProvider = ({ children }) => {
     dispatch({ type: GET_CURRENT_LOCATION, payload: loc });
   };
 
+  const addToFavorites = (id) => {
+    dispatch({ type: ADD_TO_FAVORITES, payload: id });
+  };
+
   return (
     <NewsCategoryContext.Provider
       value={{
@@ -108,6 +121,7 @@ export const NewsCategoryProvider = ({ children }) => {
         getNewsArray,
         handleSearch,
         getCurrentLocation,
+        addToFavorites,
       }}
     >
       {children}

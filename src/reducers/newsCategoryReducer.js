@@ -11,6 +11,7 @@ import {
   GET_NEWS_ARRAY,
   HANDLE_SEARCH,
   GET_CURRENT_LOCATION,
+  ADD_TO_FAVORITES,
 } from "../helpers/actions";
 
 const newsCategoryReducer = (state, action) => {
@@ -25,10 +26,17 @@ const newsCategoryReducer = (state, action) => {
     const newsCat = action.payload.map((obj) => {
       return { ...obj, category: "general" };
     });
+
     return {
       ...state,
       newsCategoryLoading: false,
       newsGeneral: newsCat,
+      // newsCattegories: [
+      //   ...state.newsCattegories,
+      //   state.newsCattegories.find((item) => {
+      //     return item.category === "general";
+      //   }),
+      // ],
     };
   }
   if (action.type === GET_NEWS_CATEGORY_HEALTH_SUCCESS) {
@@ -83,11 +91,15 @@ const newsCategoryReducer = (state, action) => {
   }
   // Sort by date
   if (action.type === SORT_LATEST_NEWS) {
-    const sortedNews = state.newsArray.sort(
-      (a, b) =>
-        new Date(Date.parse(b.publishedAt)).getTime() -
-        new Date(Date.parse(a.publishedAt)).getTime()
-    );
+    const sortedNews = state.newsArray
+      .sort(
+        (a, b) =>
+          new Date(Date.parse(b.publishedAt)).getTime() -
+          new Date(Date.parse(a.publishedAt)).getTime()
+      )
+      .map((item, index) => {
+        return { ...item, id: index };
+      });
     return {
       ...state,
       newsArray: sortedNews,
@@ -194,6 +206,13 @@ const newsCategoryReducer = (state, action) => {
         filterArray: [...filtered],
       };
     }
+  }
+  if (action.type === ADD_TO_FAVORITES) {
+    const item = state.newsArray.find((item) => item.id === action.payload);
+    return {
+      ...state,
+      favoritesArray: [...state.favoritesArray, item],
+    };
   }
   throw new Error(`No Matching "${action.type}" - action type`);
 };

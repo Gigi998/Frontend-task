@@ -8,8 +8,8 @@ import {
   Science,
   Sports,
   Technology,
-  Error,
   HomePage,
+  Favorites,
 } from "../src/pages";
 
 function App() {
@@ -27,6 +27,7 @@ function App() {
           <Route path="science" element={<Science />} />
           <Route path="sports" element={<Sports />} />
           <Route path="technology" element={<Technology />} />
+          <Route path="favorites" element={<Favorites />} />
         </Routes>
       </div>
     </BrowserRouter>

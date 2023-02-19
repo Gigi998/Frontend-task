@@ -12,6 +12,8 @@ import TechnologyLogo from "../assets/img/Technology.svg";
 import TechnologyLogoR from "../assets/img/TechnologyR.svg";
 import GeneralLogo from "../assets/img/News.svg";
 import GeneralLogoR from "../assets/img/NewsR.svg";
+import Fav from "../assets/img/Fav.svg";
+import FavR from "../assets/img/FavR.svg";
 
 const navLinks = [
   {
@@ -62,6 +64,13 @@ const navLinks = [
     path: "technology",
     svg: TechnologyLogo,
     svgR: TechnologyLogoR,
+  },
+  {
+    id: 8,
+    text: "Favorites",
+    path: "favorites",
+    svg: Fav,
+    svgR: FavR,
   },
 ];
 
