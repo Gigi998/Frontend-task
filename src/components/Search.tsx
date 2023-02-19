@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import SearchLogo from "../assets/img/Search.svg";
 import { useNewsCategoryContext } from "../context/newsCategoryContext";
 

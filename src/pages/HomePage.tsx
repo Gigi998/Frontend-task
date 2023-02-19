@@ -1,8 +1,9 @@
 import React, { useEffect, useRef } from "react";
 import { SingleArticle, Loading, ScrollWidget } from "../components";
 import { useNewsCategoryContext } from "../context/newsCategoryContext";
-import { urlCategory, api5 } from "../helpers/urls";
+import { urlCategory, api6 } from "../helpers/urls";
 import { categoriesArray } from "../helpers/categories";
+import { useLocation } from "react-router-dom";
 
 const HomePage = () => {
   const {
@@ -11,18 +12,25 @@ const HomePage = () => {
     newsArray,
     sortLatestNews,
     getNewsArray,
-    clearOldNews,
     query,
     newsGeneral,
     newsScience,
     newsSport,
     newsBusiness,
     newsTech,
+    filterArray,
+    getCurrentLocation,
   } = useNewsCategoryContext();
+
+  const location = useLocation();
+
+  useEffect(() => {
+    getCurrentLocation(location.pathname);
+  }, [location.pathname]);
 
   useEffect(() => {
     categoriesArray.forEach((cat) => {
-      return fetchByCategory(urlCategory, cat, api5);
+      return fetchByCategory(urlCategory, cat, api6);
     });
   }, []);
 
@@ -57,9 +65,13 @@ const HomePage = () => {
       <h1 className="title">News</h1>
       <div className="articles-container">
         <ScrollWidget />
-        {newsArray.slice(0, 16).map((article) => {
-          return <SingleArticle key={Math.random() * 10000} {...article} />;
-        })}
+        {query === ""
+          ? newsArray.slice(0, 16).map((article) => {
+              return <SingleArticle key={Math.random() * 10000} {...article} />;
+            })
+          : filterArray.slice(0, 16).map((article) => {
+              return <SingleArticle key={Math.random() * 10000} {...article} />;
+            })}
       </div>
     </div>
   );

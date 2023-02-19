@@ -3,14 +3,16 @@ import { useNewsCategoryContext } from "../context/newsCategoryContext";
 import { Loading, CategoryPageComp } from "../components";
 
 const Science = () => {
-  const { category, newsCategoryLoading, newsScience } =
+  const { category, newsCategoryLoading, newsScience, query, filterArray } =
     useNewsCategoryContext();
 
   if (newsCategoryLoading) {
     return <Loading />;
   }
 
-  return <CategoryPageComp newsCategory={newsScience} />;
+  return (
+    <CategoryPageComp newsCategory={query === "" ? newsScience : filterArray} />
+  );
 };
 
 export default Science;

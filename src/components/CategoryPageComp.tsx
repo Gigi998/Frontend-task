@@ -1,7 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { SingleArticle } from "../components";
+import { useNewsCategoryContext } from "../context/newsCategoryContext";
+import { useLocation } from "react-router-dom";
 
 const CategoryPageComp = ({ newsCategory }) => {
+  const { getCurrentLocation } = useNewsCategoryContext();
+
+  const location = useLocation();
+
+  useEffect(() => {
+    getCurrentLocation(location.pathname);
+  }, [location.pathname]);
+
   return (
     <div className="news-page">
       <h1 className="title">

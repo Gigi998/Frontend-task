@@ -3,13 +3,16 @@ import { useNewsCategoryContext } from "../context/newsCategoryContext";
 import { Loading, CategoryPageComp } from "../components";
 
 const Technology = () => {
-  const { newsCategoryLoading, newsTech } = useNewsCategoryContext();
+  const { newsCategoryLoading, newsTech, query, filterArray } =
+    useNewsCategoryContext();
 
   if (newsCategoryLoading) {
     return <Loading />;
   }
 
-  return <CategoryPageComp newsCategory={newsTech} />;
+  return (
+    <CategoryPageComp newsCategory={query === "" ? newsTech : filterArray} />
+  );
 };
 
 export default Technology;

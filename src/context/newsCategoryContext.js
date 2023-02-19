@@ -10,11 +10,11 @@ import {
   GET_NEWS_CATEGORY_SPORT_SUCCESS,
   GET_NEWS_CATEGORY_TECHNOLOGY_SUCCESS,
   GET_NEWS_CATEGORY_ERROR,
-  CLEAR_OLD_NEWS,
   SORT_LATEST_NEWS,
   GET_NEWS_ARRAY,
   HANDLE_SEARCH,
   UPDATE_ARRAY,
+  GET_CURRENT_LOCATION,
 } from "../helpers/actions";
 
 const initialState = {
@@ -28,6 +28,8 @@ const initialState = {
   newsSport: [],
   newsTech: [],
   query: "",
+  filterArray: [],
+  currentLocation: "",
 };
 
 const NewsCategoryContext = React.createContext();
@@ -42,43 +44,43 @@ export const NewsCategoryProvider = ({ children }) => {
         `${url}category=${category}&apiKey=${api}`
       );
       const news = response.data.articles;
-      if (category === "general")
-        return dispatch({
-          type: GET_NEWS_CATEGORY_GENERAL_SUCCESS,
-          payload: news,
-        });
-      if (category === "health")
-        return dispatch({
-          type: GET_NEWS_CATEGORY_HEALTH_SUCCESS,
-          payload: news,
-        });
-      if (category === "business")
-        return dispatch({
-          type: GET_NEWS_CATEGORY_BUSINESS_SUCCESS,
-          payload: news,
-        });
-      if (category === "science")
-        return dispatch({
-          type: GET_NEWS_CATEGORY_SCIENCE_SUCCESS,
-          payload: news,
-        });
-      if (category === "sport")
-        return dispatch({
-          type: GET_NEWS_CATEGORY_SPORT_SUCCESS,
-          payload: news,
-        });
-      if (category === "technology")
-        return dispatch({
-          type: GET_NEWS_CATEGORY_TECHNOLOGY_SUCCESS,
-          payload: news,
-        });
+      switch (category) {
+        case "general":
+          return dispatch({
+            type: GET_NEWS_CATEGORY_GENERAL_SUCCESS,
+            payload: news,
+          });
+        case "health":
+          return dispatch({
+            type: GET_NEWS_CATEGORY_HEALTH_SUCCESS,
+            payload: news,
+          });
+        case "business":
+          return dispatch({
+            type: GET_NEWS_CATEGORY_BUSINESS_SUCCESS,
+            payload: news,
+          });
+        case "science":
+          return dispatch({
+            type: GET_NEWS_CATEGORY_SCIENCE_SUCCESS,
+            payload: news,
+          });
+        case "sport":
+          return dispatch({
+            type: GET_NEWS_CATEGORY_SPORT_SUCCESS,
+            payload: news,
+          });
+        case "technology":
+          return dispatch({
+            type: GET_NEWS_CATEGORY_TECHNOLOGY_SUCCESS,
+            payload: news,
+          });
+        default:
+          throw new Error();
+      }
     } catch (error) {
       dispatch({ type: GET_NEWS_CATEGORY_ERROR });
     }
-  };
-
-  const clearOldNews = () => {
-    dispatch({ type: CLEAR_OLD_NEWS });
   };
 
   const sortLatestNews = () => {
@@ -93,15 +95,19 @@ export const NewsCategoryProvider = ({ children }) => {
     dispatch({ type: HANDLE_SEARCH, payload: value });
   };
 
+  const getCurrentLocation = (loc) => {
+    dispatch({ type: GET_CURRENT_LOCATION, payload: loc });
+  };
+
   return (
     <NewsCategoryContext.Provider
       value={{
         ...state,
         fetchByCategory,
-        clearOldNews,
         sortLatestNews,
         getNewsArray,
         handleSearch,
+        getCurrentLocation,
       }}
     >
       {children}
