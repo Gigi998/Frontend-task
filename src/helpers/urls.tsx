@@ -23,12 +23,5 @@ export const api7 = "d32503a4098542829c15155f05281c15";
 // Fetch by category api
 export const urlCategory = `https://newsapi.org/v2/top-headlines?country=us&`;
 
-// News api
-export const allNews = `https://newsapi.org/v2/everything?q=latest
-    &pageSize=50&sortBy=publishedAt&apiKey=${api3}`;
-
-// All news api
-export const allNewsUrl = ` https://newsapi.org/v2/top-headlines?country=us&apiKey=${api1}`;
-
 // Infinite scroll api
 export const infiniteUrl = `https://newsapi.org/v2/everything?q=latest&sortBy=publishedAt&pageSize=20&page=2&apiKey=${api3}`;

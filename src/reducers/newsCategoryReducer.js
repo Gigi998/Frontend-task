@@ -20,58 +20,7 @@ const newsCategoryReducer = (state, action) => {
   if (action.type === GET_NEWS_CATEGORY_ERROR) {
     return { ...state, newsCategoryLoading: false, newsCategoryError: true };
   }
-  // switch (action.type) {
-  //   case GET_NEWS_CATEGORY_GENERAL_SUCCESS:
-  //     return {
-  //       ...state,
-  //       newsCategoryLoading: false,
-  //       newsGeneral: action.payload.map((obj) => {
-  //         return { ...state, category: "general" };
-  //       }),
-  //     };
-  //   case GET_NEWS_CATEGORY_HEALTH_SUCCESS:
-  //     return {
-  //       ...state,
-  //       newsCategoryLoading: false,
-  //       newsHealth: action.payload.map((obj) => {
-  //         return { ...obj, category: "health" };
-  //       }),
-  //     };
-  //   case GET_NEWS_CATEGORY_BUSINESS_SUCCESS:
-  //     return {
-  //       ...state,
-  //       newsCategoryLoading: false,
-  //       newsBusiness: action.payload.map((obj) => {
-  //         return { ...obj, category: "business" };
-  //       }),
-  //     };
-  //   case GET_NEWS_CATEGORY_SCIENCE_SUCCESS:
-  //     return {
-  //       ...state,
-  //       newsCategoryLoading: false,
-  //       newsScience: action.payload.map((obj) => {
-  //         return { ...obj, category: "science" };
-  //       }),
-  //     };
-  //   case GET_NEWS_CATEGORY__SUCCESS:
-  //     return {
-  //       ...state,
-  //       newsCategoryLoading: false,
-  //       newsHealth: action.payload.map((obj) => {
-  //         return { ...obj, category: "health" };
-  //       }),
-  //     };
-  //   case GET_NEWS_CATEGORY_HEALTH_SUCCESS:
-  //     return {
-  //       ...state,
-  //       newsCategoryLoading: false,
-  //       newsHealth: action.payload.map((obj) => {
-  //         return { ...obj, category: "health" };
-  //       }),
-  //     };
-  //   default:
-  //     throw new Error();
-  // }
+  // Fetch news from each category
   if (action.type === GET_NEWS_CATEGORY_GENERAL_SUCCESS) {
     const newsCat = action.payload.map((obj) => {
       return { ...obj, category: "general" };
@@ -225,7 +174,7 @@ const newsCategoryReducer = (state, action) => {
         filterArray: [...filtered],
       };
     }
-    if (state.currentLocation === "/sport") {
+    if (state.currentLocation === "/sports") {
       const filtered = state.newsSport.filter((item) => {
         return item.title.toLowerCase().includes(action.payload.toLowerCase());
       });

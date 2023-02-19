@@ -1,10 +1,22 @@
 import React, { useEffect } from "react";
-import { SingleArticle } from "../components";
+import { ScrollWidget, SingleArticle } from "../components";
 import { useNewsCategoryContext } from "../context/newsCategoryContext";
 import { useLocation } from "react-router-dom";
+import { categoriesArray } from "../helpers/navLinks";
+import { urlCategory, api7 } from "../helpers/urls";
 
 const CategoryPageComp = ({ newsCategory }) => {
-  const { getCurrentLocation } = useNewsCategoryContext();
+  const {
+    getCurrentLocation,
+    fetchByCategory,
+    newsSport,
+    newsScience,
+    newsGeneral,
+    newsTech,
+    newsBusiness,
+    getNewsArray,
+    sortLatestNews,
+  } = useNewsCategoryContext();
 
   const location = useLocation();
 
@@ -12,15 +24,48 @@ const CategoryPageComp = ({ newsCategory }) => {
     getCurrentLocation(location.pathname);
   }, [location.pathname]);
 
+  useEffect(() => {
+    categoriesArray.forEach((cat) => {
+      return fetchByCategory(urlCategory, cat, api7);
+    });
+  }, []);
+
+  useEffect(() => {
+    getNewsArray();
+  }, [
+    newsSport,
+    newsScience,
+    newsGeneral,
+    newsScience,
+    newsBusiness,
+    newsTech,
+  ]);
+
+  useEffect(() => {
+    sortLatestNews();
+  }, [
+    newsSport,
+    newsScience,
+    newsGeneral,
+    newsScience,
+    newsBusiness,
+    newsTech,
+  ]);
+
   return (
     <div className="news-page">
       <h1 className="title">
-        {newsCategory.slice(0, 1).map((item) => item.category)}
+        {location.pathname === "/"
+          ? "news"
+          : newsCategory.slice(0, 1).map((item) => item.category)}
       </h1>
       <div className="articles-container">
-        {newsCategory.slice(0, 18).map((article) => {
-          return <SingleArticle key={Math.random() * 10000} {...article} />;
-        })}
+        {location.pathname === "/" && <ScrollWidget />}
+        {newsCategory
+          .slice(0, location.pathname === "/" ? 16 : 18)
+          .map((article) => {
+            return <SingleArticle key={Math.random() * 10000} {...article} />;
+          })}
       </div>
     </div>
   );
