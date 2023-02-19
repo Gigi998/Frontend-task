@@ -1,17 +1,11 @@
-import React, { useContext, useEffect, useReducer } from "react";
+import React, { useContext, useReducer } from "react";
 import newsReducer from "../reducers/newsReducer";
-import {
-  GET_NEWS_BEGIN,
-  GET_NEWS_SUCCESS,
-  GET_NEWS_ERROR,
-  NEWS_HANDLE_CHANGE,
-} from "../helpers/actions";
-import axios from "axios";
+import { MERGE_NEWS_ARRAY } from "../helpers/actions";
 
 const initialState = {
   newsLoading: false,
   newsError: false,
-  news: [],
+  newsArray: [],
   query: "",
 };
 
@@ -20,23 +14,12 @@ const NewsContext = React.createContext();
 export const NewsProvider = ({ children }) => {
   const [state, dispatch] = useReducer(newsReducer, initialState);
 
-  const fetchNews = async (url) => {
-    dispatch({ type: GET_NEWS_BEGIN });
-    try {
-      const response = await axios.get(url);
-      const news = response.data.articles;
-      dispatch({ type: GET_NEWS_SUCCESS, payload: news });
-    } catch (error) {
-      dispatch({ type: GET_NEWS_ERROR });
-    }
-  };
-
-  const handleChange = (value) => {
-    dispatch({ type: NEWS_HANDLE_CHANGE, payload: value });
+  const mergeNewsArray = (arrays) => {
+    dispatch({ type: MERGE_NEWS_ARRAY, payload: arrays });
   };
 
   return (
-    <NewsContext.Provider value={{ ...state, fetchNews, handleChange }}>
+    <NewsContext.Provider value={{ ...state, mergeNewsArray }}>
       {children}
     </NewsContext.Provider>
   );

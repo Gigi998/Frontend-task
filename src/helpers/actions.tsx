@@ -3,6 +3,7 @@ export const GET_NEWS_BEGIN = "GET_NEWS_BEGIN";
 export const GET_NEWS_SUCCESS = "GET_NEWS_SUCCESS";
 export const GET_NEWS_ERROR = "GET_NEWS_ERROR";
 export const NEWS_HANDLE_CHANGE = "NEWS_HANDLE_CHANGE";
+export const MERGE_NEWS_ARRAY = "MERGE_NEWS_ARRAY";
 
 // news by category
 export const GET_NEWS_CATEGORY_BEGIN = "GET_NEWS_CATEGORY_BEGIN";

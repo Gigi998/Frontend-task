@@ -29,7 +29,6 @@ const newsCategoryReducer = (state, action) => {
       newsCategoryLoading: false,
       // Update array and add category property
       newsGeneral: newsCat,
-      // newsArray: [...state.newsArray, ...newsCat],
     };
   }
   if (action.type === GET_NEWS_CATEGORY_HEALTH_SUCCESS) {
@@ -40,7 +39,6 @@ const newsCategoryReducer = (state, action) => {
       ...state,
       newsCategoryLoading: false,
       newsHealth: newsCat,
-      // newsArray: [...state.newsArray, ...newsCat],
     };
   }
   if (action.type === GET_NEWS_CATEGORY_BUSINESS_SUCCESS) {
@@ -51,7 +49,6 @@ const newsCategoryReducer = (state, action) => {
       ...state,
       newsCategoryLoading: false,
       newsBusiness: newsCat,
-      // newsArray: [...state.newsArray, ...newsCat],
     };
   }
   if (action.type === GET_NEWS_CATEGORY_SCIENCE_SUCCESS) {
@@ -62,7 +59,6 @@ const newsCategoryReducer = (state, action) => {
       ...state,
       newsCategoryLoading: false,
       newsScience: newsCat,
-      // newsArray: [...state.newsArray, ...newsCat],
     };
   }
   if (action.type === GET_NEWS_CATEGORY_SPORT_SUCCESS) {
@@ -73,7 +69,6 @@ const newsCategoryReducer = (state, action) => {
       ...state,
       newsCategoryLoading: false,
       newsSport: newsCat,
-      // newsArray: [...state.newsArray, ...newsCat],
     };
   }
   if (action.type === GET_NEWS_CATEGORY_TECHNOLOGY_SUCCESS) {
@@ -84,7 +79,6 @@ const newsCategoryReducer = (state, action) => {
       ...state,
       newsCategoryLoading: false,
       newsTech: newsCat,
-      // newsArray: [...state.newsArray, ...newsCat],
     };
   }
   if (action.type === CLEAR_OLD_NEWS) {
