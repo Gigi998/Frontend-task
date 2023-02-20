@@ -3,7 +3,7 @@ import { ScrollWidget, SingleArticle } from "../components";
 import { useNewsCategoryContext } from "../context/newsCategoryContext";
 import { useLocation } from "react-router-dom";
 import { categoriesArray } from "../helpers/navLinks";
-import { urlCategory, api3 } from "../helpers/urls";
+import { urlCategory, api4 } from "../helpers/urls";
 
 const CategoryPageComp = ({ newsCategory }) => {
   const {
@@ -26,7 +26,7 @@ const CategoryPageComp = ({ newsCategory }) => {
 
   useEffect(() => {
     categoriesArray.forEach((cat) => {
-      return fetchByCategory(urlCategory, cat, api3);
+      return fetchByCategory(urlCategory, cat, api4);
     });
     // fetchByCategory(urlCategory, location.pathname.slice(1), api3);
   }, []);
@@ -56,9 +56,7 @@ const CategoryPageComp = ({ newsCategory }) => {
   return (
     <div className="news-page">
       <h1 className="title">
-        {location.pathname === "/"
-          ? "news"
-          : newsCategory.slice(0, 1).map((item) => item.category)}
+        {location.pathname === "/" ? "news" : location.pathname.slice(1)}
       </h1>
       <div className="articles-container">
         {location.pathname === "/" && <ScrollWidget />}

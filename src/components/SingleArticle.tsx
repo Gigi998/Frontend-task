@@ -4,7 +4,23 @@ import { BsBookmark } from "react-icons/bs";
 import { useNewsCategoryContext } from "../context/newsCategoryContext";
 
 const SingleArtilce = ({ author, title, urlToImage, category, id }) => {
-  const { addToFavorites } = useNewsCategoryContext();
+  const { addToFavorites, favoritesArray, currentLocation } =
+    useNewsCategoryContext();
+
+  // Check if item is already in favorites array
+  const handleClick = (id) => {
+    if (favoritesArray.length === 0) {
+      addToFavorites(id);
+    } else {
+      let isInArr;
+      isInArr = favoritesArray.find((item) => item.id === id);
+      if (!isInArr) {
+        addToFavorites(id);
+      } else {
+        return;
+      }
+    }
+  };
 
   return (
     <div className="article-container">
@@ -26,12 +42,14 @@ const SingleArtilce = ({ author, title, urlToImage, category, id }) => {
               ? author.slice(0, 60)
               : `${author}...`}
           </h2>
-          <button
-            className="btn btn-bookmark"
-            onClick={() => addToFavorites(id)}
-          >
-            <BsBookmark fontSize="2rem" />
-          </button>
+          {currentLocation !== "/favorites" && (
+            <button
+              className="btn btn-bookmark"
+              onClick={() => handleClick(id)}
+            >
+              <BsBookmark fontSize="2rem" />
+            </button>
+          )}
         </div>
       </div>
     </div>

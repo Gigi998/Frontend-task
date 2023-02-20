@@ -13,6 +13,7 @@ import {
   GET_CURRENT_LOCATION,
   ADD_TO_FAVORITES,
 } from "../helpers/actions";
+import { v4 as uuidv4 } from "uuid";
 
 const newsCategoryReducer = (state, action) => {
   if (action.type === GET_NEWS_CATEGORY_BEGIN) {
@@ -24,24 +25,17 @@ const newsCategoryReducer = (state, action) => {
   // Fetch news from each category
   if (action.type === GET_NEWS_CATEGORY_GENERAL_SUCCESS) {
     const newsCat = action.payload.map((obj) => {
-      return { ...obj, category: "general" };
+      return { ...obj, category: "general", id: uuidv4() };
     });
-
     return {
       ...state,
       newsCategoryLoading: false,
       newsGeneral: newsCat,
-      // newsCattegories: [
-      //   ...state.newsCattegories,
-      //   state.newsCattegories.find((item) => {
-      //     return item.category === "general";
-      //   }),
-      // ],
     };
   }
   if (action.type === GET_NEWS_CATEGORY_HEALTH_SUCCESS) {
     const newsCat = action.payload.map((obj) => {
-      return { ...obj, category: "health" };
+      return { ...obj, category: "health", id: uuidv4() };
     });
     return {
       ...state,
@@ -51,7 +45,7 @@ const newsCategoryReducer = (state, action) => {
   }
   if (action.type === GET_NEWS_CATEGORY_BUSINESS_SUCCESS) {
     const newsCat = action.payload.map((obj) => {
-      return { ...obj, category: "business" };
+      return { ...obj, category: "business", id: uuidv4() };
     });
     return {
       ...state,
@@ -61,7 +55,7 @@ const newsCategoryReducer = (state, action) => {
   }
   if (action.type === GET_NEWS_CATEGORY_SCIENCE_SUCCESS) {
     const newsCat = action.payload.map((obj) => {
-      return { ...obj, category: "science" };
+      return { ...obj, category: "science", id: uuidv4() };
     });
     return {
       ...state,
@@ -71,7 +65,7 @@ const newsCategoryReducer = (state, action) => {
   }
   if (action.type === GET_NEWS_CATEGORY_SPORT_SUCCESS) {
     const newsCat = action.payload.map((obj) => {
-      return { ...obj, category: "sport" };
+      return { ...obj, category: "sport", id: uuidv4() };
     });
     return {
       ...state,
@@ -81,7 +75,7 @@ const newsCategoryReducer = (state, action) => {
   }
   if (action.type === GET_NEWS_CATEGORY_TECHNOLOGY_SUCCESS) {
     const newsCat = action.payload.map((obj) => {
-      return { ...obj, category: "tech" };
+      return { ...obj, category: "tech", id: uuidv4() };
     });
     return {
       ...state,
@@ -91,15 +85,11 @@ const newsCategoryReducer = (state, action) => {
   }
   // Sort by date
   if (action.type === SORT_LATEST_NEWS) {
-    const sortedNews = state.newsArray
-      .sort(
-        (a, b) =>
-          new Date(Date.parse(b.publishedAt)).getTime() -
-          new Date(Date.parse(a.publishedAt)).getTime()
-      )
-      .map((item, index) => {
-        return { ...item, id: index };
-      });
+    const sortedNews = state.newsArray.sort(
+      (a, b) =>
+        new Date(Date.parse(b.publishedAt)).getTime() -
+        new Date(Date.parse(a.publishedAt)).getTime()
+    );
     return {
       ...state,
       newsArray: sortedNews,
@@ -206,9 +196,20 @@ const newsCategoryReducer = (state, action) => {
         filterArray: [...filtered],
       };
     }
+    if (state.currentLocation === "/favorites") {
+      const filtered = state.favoritesArray.filter((item) => {
+        return item.title.toLowerCase().includes(action.payload.toLowerCase());
+      });
+      return {
+        ...state,
+        query: action.payload,
+        filterArray: [...filtered],
+      };
+    }
   }
   if (action.type === ADD_TO_FAVORITES) {
-    const item = state.newsArray.find((item) => item.id === action.payload);
+    const item = state.newsArray.find((i) => i.id === action.payload);
+    console.log(item);
     return {
       ...state,
       favoritesArray: [...state.favoritesArray, item],
