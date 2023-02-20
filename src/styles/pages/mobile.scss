@@ -1,0 +1,13 @@
+.featured{
+    display: none;
+    @media only screen and (max-width: $bp-small) {
+            display: block;
+        }
+}
+
+.latest{
+    display: none;
+    @media only screen and (max-width: $bp-small) {
+            display: block;
+        }
+}

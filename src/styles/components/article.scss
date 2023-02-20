@@ -12,6 +12,9 @@
         object-position: top;
         border-top-left-radius: $border-radius;
         border-top-right-radius: $border-radius;
+        @media only screen and (max-width: $bp-small) {
+                height: 60%;
+            }
     }
     .category{
         font-family: $interV_Bold;
@@ -28,7 +31,9 @@
         font-family: $interV;
         font-size: 1.2rem;
         color: $primary-black-light;
-        margin-top: auto;
+        @media only screen and (max-width: $bp-small) {
+                display: none;
+            }
     }
     .info-container{
         margin: 1.2rem;
@@ -39,12 +44,19 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
+        margin-top: auto;
     }
     .btn-bookmark{
         color: $primary-black;
         cursor: pointer;
+        background-color: transparent;
         &:hover{
-            color:$primary-blue
+            color:$primary-blue;
         }
+    }
+    @media only screen and (max-width: $bp-small) {
+        .btn-bookmark{
+                margin-top: 1rem;
+            }
     }
 }

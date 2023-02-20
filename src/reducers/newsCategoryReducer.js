@@ -12,6 +12,7 @@ import {
   HANDLE_SEARCH,
   GET_CURRENT_LOCATION,
   ADD_TO_FAVORITES,
+  TOGGLE_SIDEBAR,
 } from "../helpers/actions";
 import { v4 as uuidv4 } from "uuid";
 
@@ -27,10 +28,20 @@ const newsCategoryReducer = (state, action) => {
     const newsCat = action.payload.map((obj) => {
       return { ...obj, category: "general", id: uuidv4() };
     });
+    const newsTest = state.newsCattegories.map((cat) => {
+      if (cat.category === "general") {
+        return {
+          ...cat,
+          array: action.payload,
+        };
+      }
+      return { ...cat };
+    });
     return {
       ...state,
       newsCategoryLoading: false,
       newsGeneral: newsCat,
+      newsCattegories: newsTest,
     };
   }
   if (action.type === GET_NEWS_CATEGORY_HEALTH_SUCCESS) {
@@ -119,7 +130,7 @@ const newsCategoryReducer = (state, action) => {
       newsArray: [...newArray],
     };
   }
-
+  // Get the page location
   if (action.type === GET_CURRENT_LOCATION) {
     return { ...state, currentLocation: action.payload };
   }
@@ -209,10 +220,15 @@ const newsCategoryReducer = (state, action) => {
   }
   if (action.type === ADD_TO_FAVORITES) {
     const item = state.newsArray.find((i) => i.id === action.payload);
-    console.log(item);
     return {
       ...state,
       favoritesArray: [...state.favoritesArray, item],
+    };
+  }
+  if (action.type === TOGGLE_SIDEBAR) {
+    return {
+      ...state,
+      sidebarOpen: !state.sidebarOpen,
     };
   }
   throw new Error(`No Matching "${action.type}" - action type`);

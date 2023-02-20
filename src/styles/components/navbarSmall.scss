@@ -1,0 +1,33 @@
+.nav-small{
+    display: none;
+    @media only screen and (max-width: $bp-small) {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        .small-link{
+            background-color: transparent;
+            border: none;
+            margin: 1rem;
+            font-family: $interV;
+            font-weight: 600;
+            font-size: 1.6rem;
+            color: $primary-black-light;
+            width: 7rem;
+            border-radius: 20px;
+            height: 30px;
+            width: 70px;
+        }
+        .active{
+            border-radius: 20px;
+            // background-color: rgba(187, 30, 30, 0.1);
+            font-family: $interV;
+            font-weight: 600;
+            font-size: 1.6rem;
+            color: $primary-red;
+        }
+        .nav-active{
+            background-color: rgba(187, 30, 30, 0.1);
+            border-radius: 20px;
+        }
+    }
+}

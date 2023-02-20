@@ -7,6 +7,9 @@
     width: 100%;
     background-image: url("../../assets/img/Header_img.png");
     background-size: cover;
+    @media only screen and (max-width: $bp-small) {
+            display: none;
+        }
     .head-1{
         font-size: 1.6rem;
         font-family: $interV_Bold;
@@ -18,6 +21,9 @@
         color: $primary-black;
         margin-right: 15rem;
         font-size: 1.4rem;
+        @media only screen and (max-width: $bp-large) {
+            margin-right: 7rem;;
+        }
     }
     .btn-nav{
         width: 7rem;
@@ -27,6 +33,10 @@
         font-family: $interV_Bold;
         font-size: 1.4rem;
         margin-left: 7rem;
+        @media only screen and (max-width: $bp-large) {
+                margin-right: 3rem;
+                
+            }
     }
     .head-3{
         color: $primary-white;
@@ -34,5 +44,9 @@
         font-family: $interV_Bold;
         font-size: 1.4rem;
         margin-right: 10rem;
+        @media only screen and (max-width: $bp-large) {
+                margin-right: 3rem;
+        
+            }
     }
 }

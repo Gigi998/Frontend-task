@@ -1,20 +1,32 @@
 .page-content {
     display: flex;
     margin: 2.4rem 10%; 
+    @media only screen and (max-width: $bp-small) {
+            margin: 24px 16px;
+        }
     .news-page{
         flex: 1;
         margin-left: 2.5rem;
-    .title{
+        @media only screen and (max-width: $bp-small) {
+                margin-left: 0;
+            }
+    .title-page{
         font-size: 1.8rem;
         font-family: $interV_Semi;
         color: $primary-black-light;
         margin-bottom: 1.6rem;
         text-transform: capitalize;
+        @media only screen and (max-width: $bp-small) {
+                display: none;
+            }
     }
     .articles-container{
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
         gap: 2.2rem;
+        @media only screen and (max-width: $bp-small) {
+                grid-template-columns: 1fr;
+            }
     }
 }
 }

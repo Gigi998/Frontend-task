@@ -7,6 +7,7 @@ import Technology from "./Technology";
 import Error from "./Error";
 import HomePage from "./HomePage";
 import Favorites from "./Favorites";
+import Menu from "./Menu";
 export {
   Favorites,
   General,
@@ -17,4 +18,5 @@ export {
   Technology,
   Error,
   HomePage,
+  Menu,
 };

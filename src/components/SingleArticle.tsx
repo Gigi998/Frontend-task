@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import DefaultImg from "../assets/img/NoImage.jpg";
 import { BsBookmark } from "react-icons/bs";
 import { useNewsCategoryContext } from "../context/newsCategoryContext";
@@ -32,15 +32,11 @@ const SingleArtilce = ({ author, title, urlToImage, category, id }) => {
       <div className="info-container">
         <h2 className="category">{category}</h2>
         <h2 className="title">
-          {title.length > 60 ? `${title.slice(0, 60)}...` : title}
+          {title.length > 60 ? `${title.slice(0, 50)}...` : title}
         </h2>
         <div className="bottom">
           <h2 className="author">
-            {author === null
-              ? "unknown"
-              : author.length > 60
-              ? author.slice(0, 60)
-              : `${author}...`}
+            {author === null || author === "" ? "unknown" : author}
           </h2>
           {currentLocation !== "/favorites" && (
             <button

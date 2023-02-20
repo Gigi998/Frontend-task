@@ -6,6 +6,30 @@
         display: flex;
         align-items: center;
         justify-content: flex-start;
+        .menu-icon{
+            display: none;
+        }
+        @media only screen and (max-width: $bp-small) {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 24px 16px;
+                .search-top-container{
+                    width: 100%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    margin-bottom: 2rem;
+                }
+                .menu-icon{
+                    display: block;
+                    border: none;
+                    background: transparent;
+                    font-size: 2.5rem;
+                    cursor: pointer;
+                    color: $primary-black-light;
+                }
+            }
         .form-container{
             display: flex;
             align-items: center;
@@ -16,7 +40,12 @@
             background-color: $primary-white;
             height: 5rem;
             padding: .5rem;
+            @media only screen and (max-width: $bp-small) {
+                    margin-left: 0;
+                    width: 100%;
+                }
         }
+        
         .head-1 {
             font-weight: 900;
             font-style: normal;
@@ -55,7 +84,9 @@
             font-family: $interV_Bold;
             width: 9.5rem;
             height: 4rem;
-            
+        @media only screen and (max-width: $bp-small) {
+                display: none;
+            }
         }
     }
     .hr-line {
@@ -63,5 +94,8 @@
         width: 80%;
         opacity: 0.1;
         margin: 0 10%;
+        @media only screen and (max-width: $bp-small) {
+                display: none;
+            }
     }
 }
