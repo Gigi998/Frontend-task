@@ -2,7 +2,6 @@ import React from "react";
 import SearchLogo from "../assets/img/Search.svg";
 import { useNewsCategoryContext } from "../context/newsCategoryContext";
 import { GiHamburgerMenu } from "react-icons/gi";
-import { NavLink } from "react-router-dom";
 
 const Search = () => {
   const { query, handleSearch } = useNewsCategoryContext();
@@ -18,13 +17,9 @@ const Search = () => {
           <h1 className="head-1">
             My<span className="head-2">News</span>
           </h1>
-          <NavLink
-            to="menu"
-            className="menu-icon"
-            children={({ isActive }) => {
-              return <GiHamburgerMenu />;
-            }}
-          />
+          <button className="menu-icon">
+            <GiHamburgerMenu />
+          </button>
         </div>
         <form className="form-container" onSubmit={handleSubmit}>
           <img className="img" src={SearchLogo} alt="Search logo" />
