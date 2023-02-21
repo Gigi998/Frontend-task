@@ -6,9 +6,11 @@ import {
   MobileNavigation,
 } from "../components";
 import { useNewsCategoryContext } from "../context/newsCategoryContext";
+import { useMobileLayoutContext } from "../context/mobileLayoutContext";
 import { useMediaQuery } from "react-responsive";
-import { urlCategory, api2 } from "../helpers/urls";
+import { urlCategory, api3 } from "../helpers/urls";
 import { categoriesArray } from "../helpers/navLinks";
+import { useLocation } from "react-router-dom";
 
 const HomePage = () => {
   const {
@@ -24,18 +26,20 @@ const HomePage = () => {
     newsBusiness,
     newsTech,
     sortLatestNews,
+    getCurrentLocation,
   } = useNewsCategoryContext();
+  const { activeComp } = useMobileLayoutContext();
 
+  const location = useLocation();
   const isMobile = useMediaQuery({ maxWidth: 650 });
-  const [activeComp, setActiveComp] = useState("featured");
 
-  const handleClick = (component) => {
-    setActiveComp(component);
-  };
+  useEffect(() => {
+    getCurrentLocation(location.pathname);
+  }, [location.pathname]);
 
   useEffect(() => {
     categoriesArray.forEach((cat) => {
-      return fetchByCategory(urlCategory, cat, api2);
+      return fetchByCategory(urlCategory, cat, api3);
     });
   }, []);
 
@@ -73,7 +77,7 @@ const HomePage = () => {
 
   return (
     <div className="news-page">
-      {isMobile && <MobileNavigation handleClick={handleClick} />}
+      {isMobile && <MobileNavigation />}
       <h1 className="title-page">News</h1>
       <div className="articles-container">
         {!isMobile && (
@@ -82,9 +86,7 @@ const HomePage = () => {
           </>
         )}
         {isMobile && activeComp === "featured" && Articles}
-        {isMobile && activeComp === "latest" && (
-          <ScrollWidget style={{ display: "block" }} />
-        )}
+        {isMobile && activeComp === "latest" && <ScrollWidget />}
       </div>
     </div>
   );

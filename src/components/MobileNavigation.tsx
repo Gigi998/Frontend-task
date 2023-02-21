@@ -1,12 +1,21 @@
 import React from "react";
+import { useMobileLayoutContext } from "../context/mobileLayoutContext";
 
-const MobileNavigation = ({ handleClick }) => {
+const MobileNavigation = () => {
+  const { toggleActiveComp, activeComp } = useMobileLayoutContext();
+
   return (
     <div className="nav-small">
-      <button className="btn-m active" onClick={() => handleClick("featured")}>
+      <button
+        className={activeComp === "featured" ? "btn-m active" : "btn-m"}
+        onClick={() => toggleActiveComp("featured")}
+      >
         Featured
       </button>
-      <button className="btn-m" onClick={() => handleClick("latest")}>
+      <button
+        className={activeComp === "latest" ? "btn-m active" : "btn-m"}
+        onClick={() => toggleActiveComp("latest")}
+      >
         Latest
       </button>
     </div>

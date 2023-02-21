@@ -1,4 +1,4 @@
-// news by category
+// news by category actions
 export const GET_NEWS_CATEGORY_BEGIN = "GET_NEWS_CATEGORY_BEGIN";
 export const GET_NEWS_CATEGORY_GENERAL_SUCCESS =
   "GET_NEWS_CATEGORY_GENERAL_SUCCESS";
@@ -18,4 +18,7 @@ export const GET_NEWS_ARRAY = "GET_NEWS_ARRAY";
 export const HANDLE_SEARCH = "HANDLE_SEARCH";
 export const GET_CURRENT_LOCATION = "GET_CURRENT_LOCATION";
 export const ADD_TO_FAVORITES = "ADD_TO_FAVORITES";
-export const TOGGLE_SIDEBAR = "TOGGLE_SIDEBAR";
+
+// mobile layout actions
+export const IS_MOBILE_LAYOUT = "IS_MOBILE_LAYOUT";
+export const TOGGLE_COMP = "TOGGLE_COMP";

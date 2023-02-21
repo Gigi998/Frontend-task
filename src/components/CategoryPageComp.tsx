@@ -3,7 +3,7 @@ import { SingleArticle } from "../components";
 import { useNewsCategoryContext } from "../context/newsCategoryContext";
 import { useLocation } from "react-router-dom";
 import { categoriesArray } from "../helpers/navLinks";
-import { urlCategory, api2 } from "../helpers/urls";
+import { urlCategory, api3 } from "../helpers/urls";
 
 const CategoryPageComp = ({ newsCategory }) => {
   const { getCurrentLocation, fetchByCategory } = useNewsCategoryContext();
@@ -16,7 +16,7 @@ const CategoryPageComp = ({ newsCategory }) => {
 
   useEffect(() => {
     categoriesArray.forEach((cat) => {
-      return fetchByCategory(urlCategory, cat, api2);
+      return fetchByCategory(urlCategory, cat, api3);
     });
   }, []);
 
