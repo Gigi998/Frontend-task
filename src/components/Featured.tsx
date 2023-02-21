@@ -1,7 +1,8 @@
 import React from "react";
+import { HomePage } from "../pages";
 
 const Featured = () => {
-  return <div className="featured">Featured</div>;
+  return <HomePage />;
 };
 
 export default Featured;

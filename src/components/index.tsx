@@ -5,7 +5,7 @@ import SingleArticle from "./SingleArticle";
 import CategoryPageComp from "./CategoryPageComp";
 import Loading from "./Loading";
 import ScrollWidget from "./ScrollWidget";
-import NavbarSmall from "./NavbarSmall";
+import MobileNavigation from "./MobileNavigation";
 import Latest from "./Latest";
 import Featured from "./Featured";
 import SmallSidebar from "./SmallSidebar";
@@ -17,7 +17,7 @@ export {
   CategoryPageComp,
   Loading,
   ScrollWidget,
-  NavbarSmall,
+  MobileNavigation,
   Latest,
   Featured,
   SmallSidebar,

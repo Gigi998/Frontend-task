@@ -12,7 +12,6 @@ import {
   HANDLE_SEARCH,
   GET_CURRENT_LOCATION,
   ADD_TO_FAVORITES,
-  TOGGLE_SIDEBAR,
 } from "../helpers/actions";
 import { v4 as uuidv4 } from "uuid";
 
@@ -223,12 +222,6 @@ const newsCategoryReducer = (state, action) => {
     return {
       ...state,
       favoritesArray: [...state.favoritesArray, item],
-    };
-  }
-  if (action.type === TOGGLE_SIDEBAR) {
-    return {
-      ...state,
-      sidebarOpen: !state.sidebarOpen,
     };
   }
   throw new Error(`No Matching "${action.type}" - action type`);

@@ -7,7 +7,6 @@
 @import "../src/styles/base/base";
 @import "../src/styles/base/typography";
 
-@import "../src/styles/pages/mobile";
 @import "../src/styles/pages/news";
 
 @import "../src/styles/layouts";
@@ -15,7 +14,7 @@
 @import "../src/styles/animations";
 
 @import "../src/styles/components/smallSidebar";
-@import "../src/styles/components/navbarSmall";
+@import "../src/styles/components/mobileNavigation";
 @import "../src/styles/components/navbar";
 @import "../src/styles/components/search";
 @import "../src/styles/components/sidebar";

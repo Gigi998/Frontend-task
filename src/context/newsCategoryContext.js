@@ -15,7 +15,6 @@ import {
   HANDLE_SEARCH,
   GET_CURRENT_LOCATION,
   ADD_TO_FAVORITES,
-  TOGGLE_SIDEBAR,
 } from "../helpers/actions";
 
 const initialState = {
@@ -40,7 +39,6 @@ const initialState = {
   filterArray: [],
   currentLocation: "",
   favoritesArray: [],
-  sidebarOpen: false,
 };
 
 const NewsCategoryContext = React.createContext();
@@ -114,10 +112,6 @@ export const NewsCategoryProvider = ({ children }) => {
     dispatch({ type: ADD_TO_FAVORITES, payload: id });
   };
 
-  const toggleSidebar = (id) => {
-    dispatch({ type: TOGGLE_SIDEBAR });
-  };
-
   return (
     <NewsCategoryContext.Provider
       value={{
@@ -128,7 +122,6 @@ export const NewsCategoryProvider = ({ children }) => {
         handleSearch,
         getCurrentLocation,
         addToFavorites,
-        toggleSidebar,
       }}
     >
       {children}

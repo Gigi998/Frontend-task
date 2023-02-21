@@ -1,5 +1,5 @@
 import React from "react";
-import ScrollWidget from "./ScrollWidget";
+import { ScrollWidget } from "./";
 
 const Latest = () => {
   return (

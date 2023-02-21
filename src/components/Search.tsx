@@ -5,7 +5,7 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { NavLink } from "react-router-dom";
 
 const Search = () => {
-  const { query, handleSearch, toggleSidebar } = useNewsCategoryContext();
+  const { query, handleSearch } = useNewsCategoryContext();
 
   const handleSubmit = (e) => {
     e.preventDefault();

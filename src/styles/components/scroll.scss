@@ -8,7 +8,8 @@
             grid-column: 2/-1;
         }
     @media only screen and (max-width: $bp-small) {
-        display: none;
+        padding: 1.8rem 0 1.5rem 1.5rem; 
+        grid-column: 1/-1;
     }
     .title-container{
         display: flex;

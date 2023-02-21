@@ -1,22 +1,12 @@
 import React, { useEffect } from "react";
-import { ScrollWidget, SingleArticle } from "../components";
+import { SingleArticle } from "../components";
 import { useNewsCategoryContext } from "../context/newsCategoryContext";
 import { useLocation } from "react-router-dom";
 import { categoriesArray } from "../helpers/navLinks";
-import { urlCategory, api5 } from "../helpers/urls";
+import { urlCategory, api2 } from "../helpers/urls";
 
 const CategoryPageComp = ({ newsCategory }) => {
-  const {
-    getCurrentLocation,
-    fetchByCategory,
-    newsSport,
-    newsScience,
-    newsGeneral,
-    newsTech,
-    newsBusiness,
-    getNewsArray,
-    sortLatestNews,
-  } = useNewsCategoryContext();
+  const { getCurrentLocation, fetchByCategory } = useNewsCategoryContext();
 
   const location = useLocation();
 
@@ -26,45 +16,17 @@ const CategoryPageComp = ({ newsCategory }) => {
 
   useEffect(() => {
     categoriesArray.forEach((cat) => {
-      return fetchByCategory(urlCategory, cat, api5);
+      return fetchByCategory(urlCategory, cat, api2);
     });
-    // fetchByCategory(urlCategory, location.pathname.slice(1), api3);
   }, []);
-
-  useEffect(() => {
-    getNewsArray();
-  }, [
-    newsSport,
-    newsScience,
-    newsGeneral,
-    newsScience,
-    newsBusiness,
-    newsTech,
-  ]);
-
-  useEffect(() => {
-    sortLatestNews();
-  }, [
-    newsSport,
-    newsScience,
-    newsGeneral,
-    newsScience,
-    newsBusiness,
-    newsTech,
-  ]);
 
   return (
     <div className="news-page">
-      <h1 className="title-page">
-        {location.pathname === "/" ? "news" : location.pathname.slice(1)}
-      </h1>
+      <h1 className="title-page">{location.pathname.slice(1)}</h1>
       <div className="articles-container">
-        {location.pathname === "/" && <ScrollWidget />}
-        {newsCategory
-          .slice(0, location.pathname === "/" ? 16 : 18)
-          .map((article) => {
-            return <SingleArticle key={Math.random() * 10000} {...article} />;
-          })}
+        {newsCategory.slice(0, 18).map((article) => {
+          return <SingleArticle key={Math.random() * 10000} {...article} />;
+        })}
       </div>
     </div>
   );

@@ -1,0 +1,23 @@
+.nav-small{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 96px 16px 96px;
+    .btn-m{
+        background-color: transparent;
+        border: none;
+        margin: 1rem;
+        font-family: $interV;
+        font-weight: 600;
+        font-size: 1.6rem;
+        color: $primary-black-light;
+        border-radius: 20px;
+        height: 4rem;
+        padding: 1rem;
+    }
+    .active{
+        background-color: rgba(187, 30, 30, 0.1);
+        color: $primary-red;
+    }
+
+}

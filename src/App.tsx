@@ -1,14 +1,6 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import {
-  Navbar,
-  NavbarSmall,
-  Search,
-  Sidebar,
-  Featured,
-  Latest,
-  SmallSidebar,
-} from "../src/components";
+import { Navbar, Search, Sidebar } from "../src/components";
 import {
   General,
   Business,
@@ -18,7 +10,6 @@ import {
   Technology,
   HomePage,
   Favorites,
-  Menu,
 } from "../src/pages";
 
 function App() {
@@ -26,7 +17,6 @@ function App() {
     <BrowserRouter>
       <Navbar />
       <Search />
-      <NavbarSmall />
       <div className="page-content">
         <Sidebar />
         <Routes>
@@ -38,9 +28,6 @@ function App() {
           <Route path="sports" element={<Sports />} />
           <Route path="technology" element={<Technology />} />
           <Route path="favorites" element={<Favorites />} />
-          <Route path="featured" element={<Featured />} />
-          <Route path="latest" element={<Latest />} />
-          <Route path="menu" element={<Menu />} />
         </Routes>
       </div>
     </BrowserRouter>
