@@ -9,6 +9,7 @@ import MobileNavigation from "./MobileNavigation";
 import Latest from "./Latest";
 import Featured from "./Featured";
 import SmallSidebar from "./SmallSidebar";
+import Menu from "./Menu";
 export {
   Navbar,
   Search,
@@ -21,4 +22,5 @@ export {
   Latest,
   Featured,
   SmallSidebar,
+  Menu,
 };

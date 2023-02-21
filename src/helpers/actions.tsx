@@ -22,3 +22,4 @@ export const ADD_TO_FAVORITES = "ADD_TO_FAVORITES";
 // mobile layout actions
 export const IS_MOBILE_LAYOUT = "IS_MOBILE_LAYOUT";
 export const TOGGLE_COMP = "TOGGLE_COMP";
+export const IS_SIDEBAR_OPEN = "IS_SIDEBAR_OPEN";

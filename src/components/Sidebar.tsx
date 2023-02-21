@@ -1,8 +1,11 @@
 import React from "react";
 import navLinks from "../helpers/navLinks";
 import { NavLink } from "react-router-dom";
+import { useMobileLayoutContext } from "../context/mobileLayoutContext";
 
 const Sidebar = () => {
+  const { isSidebarOpen, toggleSidebar } = useMobileLayoutContext();
+
   return (
     <div className="sidebar">
       {navLinks.map((link) => {
@@ -11,6 +14,7 @@ const Sidebar = () => {
           <NavLink
             key={id}
             to={path}
+            onClick={isSidebarOpen && (() => toggleSidebar())}
             className={({ isActive }) => (isActive ? "link active" : "link")}
             children={({ isActive }) => {
               return (

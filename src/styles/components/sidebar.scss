@@ -1,7 +1,4 @@
 .sidebar{
-    @media only screen and (max-width: $bp-small) {
-            display: none;
-        }
     .link{
         display: flex;
         flex-direction: column;

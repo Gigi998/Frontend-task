@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Navbar, Search, Sidebar } from "../src/components";
+import { Navbar, Search, Sidebar, Menu } from "../src/components";
 import {
   General,
   Business,
@@ -11,14 +11,16 @@ import {
   HomePage,
   Favorites,
 } from "../src/pages";
+import { useMobileLayoutContext } from "./context/mobileLayoutContext";
 
 function App() {
+  const { isMobile } = useMobileLayoutContext();
   return (
     <BrowserRouter>
       <Navbar />
       <Search />
       <div className="page-content">
-        <Sidebar />
+        {!isMobile && <Sidebar />}
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="general" element={<General />} />

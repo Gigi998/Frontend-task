@@ -8,7 +8,7 @@ import {
 import { useNewsCategoryContext } from "../context/newsCategoryContext";
 import { useMobileLayoutContext } from "../context/mobileLayoutContext";
 import { useMediaQuery } from "react-responsive";
-import { urlCategory, api3 } from "../helpers/urls";
+import { urlCategory, api4 } from "../helpers/urls";
 import { categoriesArray } from "../helpers/navLinks";
 import { useLocation } from "react-router-dom";
 
@@ -28,10 +28,14 @@ const HomePage = () => {
     sortLatestNews,
     getCurrentLocation,
   } = useNewsCategoryContext();
-  const { activeComp } = useMobileLayoutContext();
+  const { activeComp, setIsMobile } = useMobileLayoutContext();
 
   const location = useLocation();
   const isMobile = useMediaQuery({ maxWidth: 650 });
+
+  useEffect(() => {
+    setIsMobile(isMobile);
+  }, [isMobile]);
 
   useEffect(() => {
     getCurrentLocation(location.pathname);
@@ -39,7 +43,7 @@ const HomePage = () => {
 
   useEffect(() => {
     categoriesArray.forEach((cat) => {
-      return fetchByCategory(urlCategory, cat, api3);
+      return fetchByCategory(urlCategory, cat, api4);
     });
   }, []);
 
