@@ -3,21 +3,16 @@ import { SingleArticle } from "../components";
 import { useNewsCategoryContext } from "../context/newsCategoryContext";
 import { useLocation } from "react-router-dom";
 import { categoriesArray } from "../helpers/navLinks";
-import { urlCategory, api7 } from "../helpers/urls";
+import { urlCategory, api2 } from "../helpers/urls";
 import { v4 as uuidv4 } from "uuid";
 
 const CategoryPageComp = ({ newsCategory }) => {
   const {
     getCurrentLocation,
     fetchByCategory,
-    newsSport,
-    newsScience,
-    newsGeneral,
-    newsBusiness,
-    newsHealth,
-    newsTech,
     getNewsArray,
     sortLatestNews,
+    newsCategories,
   } = useNewsCategoryContext();
 
   const location = useLocation();
@@ -28,14 +23,14 @@ const CategoryPageComp = ({ newsCategory }) => {
 
   useEffect(() => {
     categoriesArray.forEach((cat) => {
-      return fetchByCategory(urlCategory, cat, api7);
+      return fetchByCategory(urlCategory, cat, api2);
     });
   }, []);
 
   useEffect(() => {
     getNewsArray();
     sortLatestNews();
-  }, [newsSport, newsHealth, newsGeneral, newsScience, newsBusiness, newsTech]);
+  }, [newsCategories]);
 
   return (
     <div className="news-page">

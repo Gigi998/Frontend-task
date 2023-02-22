@@ -7,7 +7,7 @@ import {
 } from "../components";
 import { useNewsCategoryContext } from "../context/newsCategoryContext";
 import { useMobileLayoutContext } from "../context/mobileLayoutContext";
-import { urlCategory, api1 } from "../helpers/urls";
+import { urlCategory, api4 } from "../helpers/urls";
 import { categoriesArray } from "../helpers/navLinks";
 import { useLocation } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
@@ -29,6 +29,7 @@ const HomePage = () => {
     sortLatestNews,
     getCurrentLocation,
     removeDuplicates,
+    newsCategories,
   } = useNewsCategoryContext();
   const { activeComp, isMobile } = useMobileLayoutContext();
 
@@ -40,7 +41,7 @@ const HomePage = () => {
 
   useEffect(() => {
     categoriesArray.forEach((cat) => {
-      return fetchByCategory(urlCategory, cat, api1);
+      return fetchByCategory(urlCategory, cat, api4);
     });
   }, []);
 
@@ -48,7 +49,7 @@ const HomePage = () => {
     getNewsArray();
     sortLatestNews();
     removeDuplicates();
-  }, [newsSport, newsScience, newsGeneral, newsHealth, newsBusiness, newsTech]);
+  }, [newsCategories]);
 
   if (newsCategoryLoading) {
     return <Loading />;

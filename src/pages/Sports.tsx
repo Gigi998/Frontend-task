@@ -3,7 +3,7 @@ import { useNewsCategoryContext } from "../context/newsCategoryContext";
 import { Loading, CategoryPageComp } from "../components";
 
 const Sports = () => {
-  const { newsCategoryLoading, newsSport, query, filterArray } =
+  const { newsCategoryLoading, query, filterArray, newsCategories } =
     useNewsCategoryContext();
 
   if (newsCategoryLoading) {
@@ -11,7 +11,9 @@ const Sports = () => {
   }
 
   return (
-    <CategoryPageComp newsCategory={query === "" ? newsSport : filterArray} />
+    <CategoryPageComp
+      newsCategory={query === "" ? newsCategories.sport : filterArray}
+    />
   );
 };
 

@@ -3,7 +3,7 @@ import { useNewsCategoryContext } from "../context/newsCategoryContext";
 import { Loading, CategoryPageComp } from "../components";
 
 const Health = () => {
-  const { newsCategoryLoading, newsHealth, query, filterArray } =
+  const { newsCategoryLoading, newsCategories, query, filterArray } =
     useNewsCategoryContext();
 
   if (newsCategoryLoading) {
@@ -11,7 +11,9 @@ const Health = () => {
   }
 
   return (
-    <CategoryPageComp newsCategory={query === "" ? newsHealth : filterArray} />
+    <CategoryPageComp
+      newsCategory={query === "" ? newsCategories.health : filterArray}
+    />
   );
 };
 

@@ -3,12 +3,7 @@ import axios from "axios";
 import newsCategoryReducer from "../reducers/newsCategoryReducer";
 import {
   GET_NEWS_CATEGORY_BEGIN,
-  GET_NEWS_CATEGORY_HEALTH_SUCCESS,
-  GET_NEWS_CATEGORY_GENERAL_SUCCESS,
-  GET_NEWS_CATEGORY_BUSINESS_SUCCESS,
-  GET_NEWS_CATEGORY_SCIENCE_SUCCESS,
-  GET_NEWS_CATEGORY_SPORT_SUCCESS,
-  GET_NEWS_CATEGORY_TECHNOLOGY_SUCCESS,
+  GET_NEWS_CATEGORY_SUCCESS,
   GET_NEWS_CATEGORY_ERROR,
   SORT_LATEST_NEWS,
   GET_NEWS_ARRAY,
@@ -23,12 +18,13 @@ const initialState = {
   newsCategoryError: false,
   newsArray: [],
   newsCategories: {
-    newsBusiness: [],
-    newsGeneral: [],
-    newsHealth: [],
-    newsScience: [],
-    newsSport: [],
-    newsTech: [],
+    business: [],
+    general: [],
+    health: [],
+    science: [],
+    sport: [],
+    technology: [],
+    favorites: [],
   },
 
   newsGeneral: [],
@@ -55,40 +51,19 @@ export const NewsCategoryProvider = ({ children }) => {
         `${url}category=${category}&apiKey=${api}`
       );
       const news = response.data.articles;
-      switch (category) {
-        case "general":
-          return dispatch({
-            type: GET_NEWS_CATEGORY_GENERAL_SUCCESS,
-            payload: news,
-          });
-        case "health":
-          return dispatch({
-            type: GET_NEWS_CATEGORY_HEALTH_SUCCESS,
-            payload: news,
-          });
-        case "business":
-          return dispatch({
-            type: GET_NEWS_CATEGORY_BUSINESS_SUCCESS,
-            payload: news,
-          });
-        case "science":
-          return dispatch({
-            type: GET_NEWS_CATEGORY_SCIENCE_SUCCESS,
-            payload: news,
-          });
-        case "sport":
-          return dispatch({
-            type: GET_NEWS_CATEGORY_SPORT_SUCCESS,
-            payload: news,
-          });
-        case "technology":
-          return dispatch({
-            type: GET_NEWS_CATEGORY_TECHNOLOGY_SUCCESS,
-            payload: news,
-          });
-        default:
-          throw new Error();
-      }
+      dispatch({
+        type: GET_NEWS_CATEGORY_SUCCESS,
+        payload: {
+          category: category,
+          list: news,
+        },
+      });
+      // switch (category) {
+      //   case "general":
+      //     return dispatch({
+      //       type: GET_NEWS_CATEGORY_GENERAL_SUCCESS,
+      //       payload: { category: category, list: news },
+      //     });
     } catch (error) {
       dispatch({ type: GET_NEWS_CATEGORY_ERROR });
     }

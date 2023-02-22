@@ -1,12 +1,7 @@
 import {
   GET_NEWS_CATEGORY_BEGIN,
   GET_NEWS_CATEGORY_ERROR,
-  GET_NEWS_CATEGORY_GENERAL_SUCCESS,
-  GET_NEWS_CATEGORY_HEALTH_SUCCESS,
-  GET_NEWS_CATEGORY_BUSINESS_SUCCESS,
-  GET_NEWS_CATEGORY_SCIENCE_SUCCESS,
-  GET_NEWS_CATEGORY_SPORT_SUCCESS,
-  GET_NEWS_CATEGORY_TECHNOLOGY_SUCCESS,
+  GET_NEWS_CATEGORY_SUCCESS,
   SORT_LATEST_NEWS,
   GET_NEWS_ARRAY,
   HANDLE_SEARCH,
@@ -24,64 +19,19 @@ const newsCategoryReducer = (state, action) => {
     return { ...state, newsCategoryLoading: false, newsCategoryError: true };
   }
   // Fetch news from each category
-  if (action.type === GET_NEWS_CATEGORY_GENERAL_SUCCESS) {
-    const newsCat = action.payload.map((obj) => {
-      return { ...obj, category: "general", id: uuidv4(), inFavorites: false };
+  if (action.type === GET_NEWS_CATEGORY_SUCCESS) {
+    const category = action.payload.category;
+    const data = action.payload.list;
+    const newsCat = data.map((obj) => {
+      return { ...obj, category: category, id: uuidv4(), inFavorites: false };
     });
     return {
       ...state,
       newsCategoryLoading: false,
-      newsGeneral: newsCat,
-    };
-  }
-  if (action.type === GET_NEWS_CATEGORY_HEALTH_SUCCESS) {
-    const newsCat = action.payload.map((obj) => {
-      return { ...obj, category: "health", id: uuidv4(), inFavorites: false };
-    });
-    return {
-      ...state,
-      newsCategoryLoading: false,
-      newsHealth: newsCat,
-    };
-  }
-  if (action.type === GET_NEWS_CATEGORY_BUSINESS_SUCCESS) {
-    const newsCat = action.payload.map((obj) => {
-      return { ...obj, category: "business", id: uuidv4(), inFavorites: false };
-    });
-    return {
-      ...state,
-      newsCategoryLoading: false,
-      newsBusiness: newsCat,
-    };
-  }
-  if (action.type === GET_NEWS_CATEGORY_SCIENCE_SUCCESS) {
-    const newsCat = action.payload.map((obj) => {
-      return { ...obj, category: "science", id: uuidv4(), inFavorites: false };
-    });
-    return {
-      ...state,
-      newsCategoryLoading: false,
-      newsScience: newsCat,
-    };
-  }
-  if (action.type === GET_NEWS_CATEGORY_SPORT_SUCCESS) {
-    const newsCat = action.payload.map((obj) => {
-      return { ...obj, category: "sport", id: uuidv4(), inFavorites: false };
-    });
-    return {
-      ...state,
-      newsCategoryLoading: false,
-      newsSport: newsCat,
-    };
-  }
-  if (action.type === GET_NEWS_CATEGORY_TECHNOLOGY_SUCCESS) {
-    const newsCat = action.payload.map((obj) => {
-      return { ...obj, category: "tech", id: uuidv4(), inFavorites: false };
-    });
-    return {
-      ...state,
-      newsCategoryLoading: false,
-      newsTech: newsCat,
+      newsCategories: {
+        ...state.newsCategories,
+        [category]: newsCat,
+      },
     };
   }
   // Sort by date
@@ -99,12 +49,12 @@ const newsCategoryReducer = (state, action) => {
   // Merge all category arrays
   if (action.type === GET_NEWS_ARRAY) {
     const newArray = [
-      ...state.newsGeneral,
-      ...state.newsBusiness,
-      ...state.newsHealth,
-      ...state.newsSport,
-      ...state.newsScience,
-      ...state.newsTech,
+      ...state.newsCategories.business,
+      ...state.newsCategories.general,
+      ...state.newsCategories.health,
+      ...state.newsCategories.science,
+      ...state.newsCategories.sport,
+      ...state.newsCategories.technology,
     ];
     return {
       ...state,
