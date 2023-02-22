@@ -8,6 +8,7 @@ import {
   GET_CURRENT_LOCATION,
   ADD_TO_FAVORITES,
   REMOVE_DUPLICATES,
+  REMOVE_FROM_FAVORITES,
 } from "../helpers/actions";
 import { v4 as uuidv4 } from "uuid";
 
@@ -82,6 +83,16 @@ const newsCategoryReducer = (state, action) => {
   }
   // Handle search
   if (action.type === HANDLE_SEARCH) {
+    if (state.currentLocation === "/favorites") {
+      const filtered = state.favoritesArray.filter((item) => {
+        return item.title.toLowerCase().includes(action.payload.toLowerCase());
+      });
+      return {
+        ...state,
+        query: action.payload,
+        filterArray: [...filtered],
+      };
+    }
     if (state.currentLocation === "/") {
       const filtered = state.newsArray.filter((item) => {
         return item.title.toLowerCase().includes(action.payload.toLowerCase());
@@ -91,69 +102,10 @@ const newsCategoryReducer = (state, action) => {
         query: action.payload,
         filterArray: [...filtered],
       };
-    }
-    if (state.currentLocation === "/general") {
-      const filtered = state.newsGeneral.filter((item) => {
-        return item.title.toLowerCase().includes(action.payload.toLowerCase());
-      });
-      return {
-        ...state,
-        query: action.payload,
-        filterArray: [...filtered],
-      };
-    }
-    if (state.currentLocation === "/science") {
-      const filtered = state.newsScience.filter((item) => {
-        return item.title.toLowerCase().includes(action.payload.toLowerCase());
-      });
-      return {
-        ...state,
-        query: action.payload,
-        filterArray: [...filtered],
-      };
-    }
-    if (state.currentLocation === "/business") {
-      const filtered = state.newsBusiness.filter((item) => {
-        return item.title.toLowerCase().includes(action.payload.toLowerCase());
-      });
-      return {
-        ...state,
-        query: action.payload,
-        filterArray: [...filtered],
-      };
-    }
-    if (state.currentLocation === "/health") {
-      const filtered = state.newsHealth.filter((item) => {
-        return item.title.toLowerCase().includes(action.payload.toLowerCase());
-      });
-      return {
-        ...state,
-        query: action.payload,
-        filterArray: [...filtered],
-      };
-    }
-    if (state.currentLocation === "/sports") {
-      const filtered = state.newsSport.filter((item) => {
-        return item.title.toLowerCase().includes(action.payload.toLowerCase());
-      });
-      return {
-        ...state,
-        query: action.payload,
-        filterArray: [...filtered],
-      };
-    }
-    if (state.currentLocation === "/technology") {
-      const filtered = state.newsTech.filter((item) => {
-        return item.title.toLowerCase().includes(action.payload.toLowerCase());
-      });
-      return {
-        ...state,
-        query: action.payload,
-        filterArray: [...filtered],
-      };
-    }
-    if (state.currentLocation === "/favorites") {
-      const filtered = state.favoritesArray.filter((item) => {
+    } else {
+      const category = state.currentLocation.slice(1);
+      console.log(category);
+      const filtered = state.newsCategories[category].filter((item) => {
         return item.title.toLowerCase().includes(action.payload.toLowerCase());
       });
       return {
@@ -169,6 +121,14 @@ const newsCategoryReducer = (state, action) => {
     return {
       ...state,
       favoritesArray: [...state.favoritesArray, { ...item }],
+    };
+  }
+  if (action.type === REMOVE_FROM_FAVORITES) {
+    return {
+      ...state,
+      favoritesArray: [
+        ...state.favoritesArray.filter((item) => item.id !== action.payload),
+      ],
     };
   }
   throw new Error(`No Matching "${action.type}" - action type`);

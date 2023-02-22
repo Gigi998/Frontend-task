@@ -6,7 +6,7 @@ import {
   Business,
   Health,
   Science,
-  Sports,
+  Sport,
   Technology,
   HomePage,
   Favorites,
@@ -41,7 +41,7 @@ function App() {
               <Route path="business" element={<Business />} />
               <Route path="health" element={<Health />} />
               <Route path="science" element={<Science />} />
-              <Route path="sports" element={<Sports />} />
+              <Route path="sport" element={<Sport />} />
               <Route path="technology" element={<Technology />} />
               <Route path="favorites" element={<Favorites />} />
             </Routes>

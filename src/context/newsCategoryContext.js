@@ -11,6 +11,7 @@ import {
   GET_CURRENT_LOCATION,
   ADD_TO_FAVORITES,
   REMOVE_DUPLICATES,
+  REMOVE_FROM_FAVORITES,
 } from "../helpers/actions";
 
 const initialState = {
@@ -24,15 +25,7 @@ const initialState = {
     science: [],
     sport: [],
     technology: [],
-    favorites: [],
   },
-
-  newsGeneral: [],
-  newsBusiness: [],
-  newsHealth: [],
-  newsScience: [],
-  newsSport: [],
-  newsTech: [],
   query: "",
   filterArray: [],
   currentLocation: "",
@@ -58,12 +51,6 @@ export const NewsCategoryProvider = ({ children }) => {
           list: news,
         },
       });
-      // switch (category) {
-      //   case "general":
-      //     return dispatch({
-      //       type: GET_NEWS_CATEGORY_GENERAL_SUCCESS,
-      //       payload: { category: category, list: news },
-      //     });
     } catch (error) {
       dispatch({ type: GET_NEWS_CATEGORY_ERROR });
     }
@@ -93,6 +80,10 @@ export const NewsCategoryProvider = ({ children }) => {
     dispatch({ type: REMOVE_DUPLICATES });
   };
 
+  const removeFromFavorites = (id) => {
+    dispatch({ type: REMOVE_FROM_FAVORITES, payload: id });
+  };
+
   return (
     <NewsCategoryContext.Provider
       value={{
@@ -104,6 +95,7 @@ export const NewsCategoryProvider = ({ children }) => {
         getCurrentLocation,
         addToFavorites,
         removeDuplicates,
+        removeFromFavorites,
       }}
     >
       {children}

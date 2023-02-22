@@ -2,7 +2,7 @@ import General from "./General";
 import Business from "./Business";
 import Health from "./Health";
 import Science from "./Science";
-import Sports from "./Sports";
+import Sport from "./Sport";
 import Technology from "./Technology";
 import Error from "./Error";
 import HomePage from "./HomePage";
@@ -13,7 +13,7 @@ export {
   Business,
   Health,
   Science,
-  Sports,
+  Sport,
   Technology,
   Error,
   HomePage,

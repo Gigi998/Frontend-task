@@ -47,6 +47,12 @@
         justify-content: space-between;
         margin-top: auto;
     }
+    .fav-icon {
+        border: none;
+        background: transparent;
+        cursor: pointer;
+        color: $primary-black-light;
+    }            
     .btn-bookmark{
         color: $primary-black;
         cursor: pointer;

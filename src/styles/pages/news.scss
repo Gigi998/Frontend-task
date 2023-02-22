@@ -28,5 +28,11 @@
                 grid-template-columns: 1fr;
             }
     }
-}
+    }
+    .fav-title{
+        font-family: $interV_Semi;
+        color: $primary-red;
+        margin: 10rem auto;
+        font-size: 5rem;
+    }
 }

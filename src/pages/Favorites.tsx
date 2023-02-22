@@ -5,6 +5,10 @@ import { Loading, CategoryPageComp } from "../components";
 const Favorites = () => {
   const { favoritesArray, query, filterArray } = useNewsCategoryContext();
 
+  if (favoritesArray.length === 0) {
+    return <h2 className="fav-title">Nothing added yet!</h2>;
+  }
+
   return (
     <CategoryPageComp
       newsCategory={query === "" ? favoritesArray : filterArray}

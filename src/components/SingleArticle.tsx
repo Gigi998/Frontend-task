@@ -2,10 +2,15 @@ import React, { useEffect } from "react";
 import DefaultImg from "../assets/img/NoImage.jpg";
 import { BsBookmark } from "react-icons/bs";
 import { useNewsCategoryContext } from "../context/newsCategoryContext";
+import Close from "../assets/img/Close.svg";
 
 const SingleArtilce = ({ author, title, urlToImage, category, id }) => {
-  const { addToFavorites, favoritesArray, currentLocation } =
-    useNewsCategoryContext();
+  const {
+    addToFavorites,
+    favoritesArray,
+    currentLocation,
+    removeFromFavorites,
+  } = useNewsCategoryContext();
 
   // Check if item is already in favorites array
   const handleClick = (title) => {
@@ -31,7 +36,9 @@ const SingleArtilce = ({ author, title, urlToImage, category, id }) => {
         <img src={urlToImage} alt="something" />
       )}
       <div className="info-container">
-        <h2 className="category">{category}</h2>
+        <h2 className="category">
+          {category === "technology" ? "tech" : category}
+        </h2>
         <h2 className="title">
           {title.length > 60 ? `${title.slice(0, 50)}...` : title}
         </h2>
@@ -39,7 +46,14 @@ const SingleArtilce = ({ author, title, urlToImage, category, id }) => {
           <h2 className="author">
             {author === null || author === "" ? "unknown" : author}
           </h2>
-          {currentLocation !== "/favorites" && (
+          {currentLocation === "/favorites" ? (
+            <button
+              className="fav-icon"
+              onClick={() => removeFromFavorites(id)}
+            >
+              <img src={Close} alt="x" />
+            </button>
+          ) : (
             <button
               className="btn btn-bookmark"
               onClick={() => handleClick(title)}
