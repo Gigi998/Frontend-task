@@ -22,5 +22,19 @@
     img{
         margin-bottom: 0.5rem;
     }
+    &-mobile{
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        margin: 36px 28px auto 30px;
+        row-gap: 1em;
+        column-gap: 2em;
+        .link{
+            width: 10rem;
+            height: 10rem;
+        }
+        .active{
+            box-shadow: 5px 5px 20px #C8CAD1, -5px -5px 20px #C8CAD1;
+        }
+    }
    
 }

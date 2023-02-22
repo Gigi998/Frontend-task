@@ -217,6 +217,7 @@ const newsCategoryReducer = (state, action) => {
       };
     }
   }
+  // Add to favorites
   if (action.type === ADD_TO_FAVORITES) {
     const item = state.newsArray.find((i) => i.id === action.payload);
     return {

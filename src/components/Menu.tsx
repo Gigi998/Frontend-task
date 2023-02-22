@@ -1,24 +1,16 @@
 import React from "react";
 import { useMobileLayoutContext } from "../context/mobileLayoutContext";
-import { Sidebar } from "../components";
+import { Sidebar, Search } from "../components";
 
 const Menu = () => {
-  const { isSidebarOpen, toggleSidebar } = useMobileLayoutContext();
+  const { isSidebarOpen } = useMobileLayoutContext();
 
   return (
     <div
       className={isSidebarOpen ? "menu-sidebar active-sidebar" : "menu-sidebar"}
     >
-      <h1 className="head-1">
-        My<span className="head-2">News</span>
-      </h1>{" "}
-      <form className="form-container">
-        <input type="text" placeholder="Search news" className="input" />
-      </form>
+      <Search />
       <Sidebar />
-      <button className="btn" onClick={() => toggleSidebar()}>
-        Close
-      </button>
     </div>
   );
 };

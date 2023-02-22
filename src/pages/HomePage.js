@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import {
   Loading,
   ScrollWidget,
@@ -7,8 +7,7 @@ import {
 } from "../components";
 import { useNewsCategoryContext } from "../context/newsCategoryContext";
 import { useMobileLayoutContext } from "../context/mobileLayoutContext";
-import { useMediaQuery } from "react-responsive";
-import { urlCategory, api4 } from "../helpers/urls";
+import { urlCategory, api5 } from "../helpers/urls";
 import { categoriesArray } from "../helpers/navLinks";
 import { useLocation } from "react-router-dom";
 
@@ -23,12 +22,13 @@ const HomePage = () => {
     newsSport,
     newsScience,
     newsGeneral,
+    newsHealth,
     newsBusiness,
     newsTech,
     sortLatestNews,
     getCurrentLocation,
   } = useNewsCategoryContext();
-  const { activeComp, setIsMobile, isMobile } = useMobileLayoutContext();
+  const { activeComp, isMobile } = useMobileLayoutContext();
 
   const location = useLocation();
 
@@ -38,31 +38,17 @@ const HomePage = () => {
 
   useEffect(() => {
     categoriesArray.forEach((cat) => {
-      return fetchByCategory(urlCategory, cat, api4);
+      return fetchByCategory(urlCategory, cat, api5);
     });
   }, []);
 
   useEffect(() => {
     getNewsArray();
-  }, [
-    newsSport,
-    newsScience,
-    newsGeneral,
-    newsScience,
-    newsBusiness,
-    newsTech,
-  ]);
+  }, [newsSport, newsScience, newsGeneral, newsHealth, newsBusiness, newsTech]);
 
   useEffect(() => {
     sortLatestNews();
-  }, [
-    newsSport,
-    newsScience,
-    newsGeneral,
-    newsScience,
-    newsBusiness,
-    newsTech,
-  ]);
+  }, [newsSport, newsScience, newsGeneral, newsHealth, newsBusiness, newsTech]);
 
   if (newsCategoryLoading) {
     return <Loading />;

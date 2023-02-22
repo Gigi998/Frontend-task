@@ -7,7 +7,7 @@ const Sidebar = () => {
   const { isSidebarOpen, toggleSidebar } = useMobileLayoutContext();
 
   return (
-    <div className="sidebar">
+    <div className={isSidebarOpen ? "sidebar sidebar-mobile" : "sidebar"}>
       {navLinks.map((link) => {
         const { id, text, path, svg, svgR } = link;
         return (
