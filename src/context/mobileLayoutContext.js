@@ -4,6 +4,7 @@ import {
   IS_MOBILE_LAYOUT,
   TOGGLE_COMP,
   IS_SIDEBAR_OPEN,
+  CLOSE_SIDEBAR,
 } from "../helpers/actions";
 
 const initialState = {
@@ -29,6 +30,10 @@ export const MobileLayoutProvider = ({ children }) => {
     dispatch({ type: IS_SIDEBAR_OPEN });
   };
 
+  const closeSidebar = () => {
+    dispatch({ type: CLOSE_SIDEBAR });
+  };
+
   return (
     <MobileLayoutContext.Provider
       value={{
@@ -36,6 +41,7 @@ export const MobileLayoutProvider = ({ children }) => {
         toggleActiveComp,
         setIsMobile,
         toggleSidebar,
+        closeSidebar,
       }}
     >
       {children}

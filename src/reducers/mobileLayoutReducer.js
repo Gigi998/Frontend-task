@@ -2,6 +2,7 @@ import {
   TOGGLE_COMP,
   IS_MOBILE_LAYOUT,
   IS_SIDEBAR_OPEN,
+  CLOSE_SIDEBAR,
 } from "../helpers/actions";
 
 const mobileLayoutReducer = (state, action) => {
@@ -20,6 +21,11 @@ const mobileLayoutReducer = (state, action) => {
       return {
         ...state,
         isSidebarOpen: !state.isSidebarOpen,
+      };
+    case CLOSE_SIDEBAR:
+      return {
+        ...state,
+        isSidebarOpen: false,
       };
     default:
   }

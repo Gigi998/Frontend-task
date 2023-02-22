@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Navbar, Search, Sidebar, Menu } from "../src/components";
 import {
   General,
@@ -15,12 +15,14 @@ import { useMobileLayoutContext } from "./context/mobileLayoutContext";
 import { useMediaQuery } from "react-responsive";
 
 function App() {
-  const { isMobile, isSidebarOpen, setIsMobile } = useMobileLayoutContext();
+  const { isMobile, isSidebarOpen, setIsMobile, closeSidebar } =
+    useMobileLayoutContext();
 
   const mobile = useMediaQuery({ maxWidth: 650 });
 
   useEffect(() => {
     setIsMobile(mobile);
+    closeSidebar();
   }, [mobile]);
 
   return (

@@ -3,7 +3,8 @@ import { SingleArticle } from "../components";
 import { useNewsCategoryContext } from "../context/newsCategoryContext";
 import { useLocation } from "react-router-dom";
 import { categoriesArray } from "../helpers/navLinks";
-import { urlCategory, api5 } from "../helpers/urls";
+import { urlCategory, api7 } from "../helpers/urls";
+import { v4 as uuidv4 } from "uuid";
 
 const CategoryPageComp = ({ newsCategory }) => {
   const {
@@ -27,15 +28,12 @@ const CategoryPageComp = ({ newsCategory }) => {
 
   useEffect(() => {
     categoriesArray.forEach((cat) => {
-      return fetchByCategory(urlCategory, cat, api5);
+      return fetchByCategory(urlCategory, cat, api7);
     });
   }, []);
 
   useEffect(() => {
     getNewsArray();
-  }, [newsSport, newsHealth, newsGeneral, newsScience, newsBusiness, newsTech]);
-
-  useEffect(() => {
     sortLatestNews();
   }, [newsSport, newsHealth, newsGeneral, newsScience, newsBusiness, newsTech]);
 
@@ -44,7 +42,7 @@ const CategoryPageComp = ({ newsCategory }) => {
       <h1 className="title-page">{location.pathname.slice(1)}</h1>
       <div className="articles-container">
         {newsCategory.slice(0, 18).map((article) => {
-          return <SingleArticle key={Math.random() * 10000} {...article} />;
+          return <SingleArticle key={uuidv4()} {...article} />;
         })}
       </div>
     </div>

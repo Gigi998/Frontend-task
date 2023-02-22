@@ -7,9 +7,10 @@ import {
 } from "../components";
 import { useNewsCategoryContext } from "../context/newsCategoryContext";
 import { useMobileLayoutContext } from "../context/mobileLayoutContext";
-import { urlCategory, api5 } from "../helpers/urls";
+import { urlCategory, api1 } from "../helpers/urls";
 import { categoriesArray } from "../helpers/navLinks";
 import { useLocation } from "react-router-dom";
+import { v4 as uuidv4 } from "uuid";
 
 const HomePage = () => {
   const {
@@ -27,6 +28,7 @@ const HomePage = () => {
     newsTech,
     sortLatestNews,
     getCurrentLocation,
+    removeDuplicates,
   } = useNewsCategoryContext();
   const { activeComp, isMobile } = useMobileLayoutContext();
 
@@ -38,16 +40,14 @@ const HomePage = () => {
 
   useEffect(() => {
     categoriesArray.forEach((cat) => {
-      return fetchByCategory(urlCategory, cat, api5);
+      return fetchByCategory(urlCategory, cat, api1);
     });
   }, []);
 
   useEffect(() => {
     getNewsArray();
-  }, [newsSport, newsScience, newsGeneral, newsHealth, newsBusiness, newsTech]);
-
-  useEffect(() => {
     sortLatestNews();
+    removeDuplicates();
   }, [newsSport, newsScience, newsGeneral, newsHealth, newsBusiness, newsTech]);
 
   if (newsCategoryLoading) {
@@ -57,7 +57,7 @@ const HomePage = () => {
   const Articles = (query === "" ? newsArray : filterArray)
     .slice(0, 16)
     .map((item) => {
-      return <SingleArticle key={Math.random() * 10000} {...item} />;
+      return <SingleArticle key={uuidv4()} {...item} />;
     });
 
   return (

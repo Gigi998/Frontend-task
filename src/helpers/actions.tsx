@@ -18,8 +18,11 @@ export const GET_NEWS_ARRAY = "GET_NEWS_ARRAY";
 export const HANDLE_SEARCH = "HANDLE_SEARCH";
 export const GET_CURRENT_LOCATION = "GET_CURRENT_LOCATION";
 export const ADD_TO_FAVORITES = "ADD_TO_FAVORITES";
+export const CLEAN_FAVORITES = "CLEAN_FAVORTIES";
+export const REMOVE_DUPLICATES = "REMOVE_DUPLICATES";
 
 // mobile layout actions
 export const IS_MOBILE_LAYOUT = "IS_MOBILE_LAYOUT";
 export const TOGGLE_COMP = "TOGGLE_COMP";
 export const IS_SIDEBAR_OPEN = "IS_SIDEBAR_OPEN";
+export const CLOSE_SIDEBAR = "CLOSE_SIDEBAR";

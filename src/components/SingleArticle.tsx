@@ -8,14 +8,15 @@ const SingleArtilce = ({ author, title, urlToImage, category, id }) => {
     useNewsCategoryContext();
 
   // Check if item is already in favorites array
-  const handleClick = (id) => {
+  const handleClick = (title) => {
     if (favoritesArray.length === 0) {
-      addToFavorites(id);
+      addToFavorites(title);
     } else {
       let isInArr;
-      isInArr = favoritesArray.find((item) => item.id === id);
+      // isInArr = favoritesArray.find((item) => item.id === id);
+      isInArr = favoritesArray.find((item) => item.title === title);
       if (!isInArr) {
-        addToFavorites(id);
+        addToFavorites(title);
       } else {
         return;
       }
@@ -41,7 +42,7 @@ const SingleArtilce = ({ author, title, urlToImage, category, id }) => {
           {currentLocation !== "/favorites" && (
             <button
               className="btn btn-bookmark"
-              onClick={() => handleClick(id)}
+              onClick={() => handleClick(title)}
             >
               <BsBookmark fontSize="2rem" />
             </button>
