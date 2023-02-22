@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Navbar, Search, Sidebar, Menu } from "../src/components";
 import {
@@ -12,26 +12,40 @@ import {
   Favorites,
 } from "../src/pages";
 import { useMobileLayoutContext } from "./context/mobileLayoutContext";
+import { useMediaQuery } from "react-responsive";
 
 function App() {
-  const { isMobile } = useMobileLayoutContext();
+  const { isMobile, isSidebarOpen, setIsMobile } = useMobileLayoutContext();
+
+  const mobile = useMediaQuery({ maxWidth: 650 });
+
+  useEffect(() => {
+    setIsMobile(mobile);
+  }, [mobile]);
+
   return (
     <BrowserRouter>
-      <Navbar />
-      <Search />
-      <div className="page-content">
-        {!isMobile && <Sidebar />}
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="general" element={<General />} />
-          <Route path="business" element={<Business />} />
-          <Route path="health" element={<Health />} />
-          <Route path="science" element={<Science />} />
-          <Route path="sports" element={<Sports />} />
-          <Route path="technology" element={<Technology />} />
-          <Route path="favorites" element={<Favorites />} />
-        </Routes>
-      </div>
+      {isSidebarOpen ? (
+        <Menu />
+      ) : (
+        <>
+          <Navbar />
+          <Search />
+          <div className="page-content">
+            {!isMobile && <Sidebar />}
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="general" element={<General />} />
+              <Route path="business" element={<Business />} />
+              <Route path="health" element={<Health />} />
+              <Route path="science" element={<Science />} />
+              <Route path="sports" element={<Sports />} />
+              <Route path="technology" element={<Technology />} />
+              <Route path="favorites" element={<Favorites />} />
+            </Routes>
+          </div>
+        </>
+      )}
     </BrowserRouter>
   );
 }

@@ -15,7 +15,6 @@ const Search = () => {
 
   return (
     <>
-      <Menu />
       <section className="search-container">
         <div className="search">
           <div className="search-top-container">

@@ -28,14 +28,9 @@ const HomePage = () => {
     sortLatestNews,
     getCurrentLocation,
   } = useNewsCategoryContext();
-  const { activeComp, setIsMobile } = useMobileLayoutContext();
+  const { activeComp, setIsMobile, isMobile } = useMobileLayoutContext();
 
   const location = useLocation();
-  const isMobile = useMediaQuery({ maxWidth: 650 });
-
-  useEffect(() => {
-    setIsMobile(isMobile);
-  }, [isMobile]);
 
   useEffect(() => {
     getCurrentLocation(location.pathname);
