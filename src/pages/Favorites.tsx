@@ -1,6 +1,6 @@
 import React from "react";
 import { useNewsCategoryContext } from "../context/newsCategoryContext";
-import { Loading, CategoryPageComp } from "../components";
+import { CategoryPageComp } from "../components";
 
 const Favorites = () => {
   const { favoritesArray, query, filterArray } = useNewsCategoryContext();

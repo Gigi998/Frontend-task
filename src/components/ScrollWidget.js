@@ -5,7 +5,7 @@ import { formatTime } from "../helpers/formatTime";
 
 const ScrollWidget = () => {
   const [pageNumber, setPageNumber] = useState(1);
-  const { loading, error, hasMore, newsList } = useFetchInfinite(pageNumber);
+  const { loading, hasMore, newsList } = useFetchInfinite(pageNumber);
 
   const observer = useRef();
 

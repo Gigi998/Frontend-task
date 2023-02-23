@@ -20,12 +20,6 @@ const HomePage = () => {
     filterArray,
     fetchByCategory,
     getNewsArray,
-    newsSport,
-    newsScience,
-    newsGeneral,
-    newsHealth,
-    newsBusiness,
-    newsTech,
     sortLatestNews,
     getCurrentLocation,
     removeDuplicates,
@@ -68,7 +62,7 @@ const HomePage = () => {
       <div className="articles-container">
         {!isMobile && (
           <>
-            {Articles} <ScrollWidget style={{ display: "block" }} />
+            {Articles} <ScrollWidget />
           </>
         )}
         {isMobile && activeComp === "featured" && Articles}

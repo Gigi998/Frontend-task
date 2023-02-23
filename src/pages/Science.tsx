@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useNewsCategoryContext } from "../context/newsCategoryContext";
 import { Loading, CategoryPageComp } from "../components";
 

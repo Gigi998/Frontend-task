@@ -1,7 +1,7 @@
 import React from "react";
 
 const Error = () => {
-  return <div>Error</div>;
+  return <h2 className="fav-title">Error</h2>;
 };
 
 export default Error;

@@ -10,6 +10,7 @@ import {
   Technology,
   HomePage,
   Favorites,
+  Error,
 } from "../src/pages";
 import { useMobileLayoutContext } from "./context/mobileLayoutContext";
 import { useMediaQuery } from "react-responsive";
@@ -44,6 +45,7 @@ function App() {
               <Route path="sport" element={<Sport />} />
               <Route path="technology" element={<Technology />} />
               <Route path="favorites" element={<Favorites />} />
+              <Route path="*" element={<Error />} />
             </Routes>
           </div>
         </>

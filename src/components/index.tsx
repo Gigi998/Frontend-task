@@ -6,9 +6,6 @@ import CategoryPageComp from "./CategoryPageComp";
 import Loading from "./Loading";
 import ScrollWidget from "./ScrollWidget";
 import MobileNavigation from "./MobileNavigation";
-import Latest from "./Latest";
-import Featured from "./Featured";
-import SmallSidebar from "./SmallSidebar";
 import Menu from "./Menu";
 export {
   Navbar,
@@ -19,8 +16,5 @@ export {
   Loading,
   ScrollWidget,
   MobileNavigation,
-  Latest,
-  Featured,
-  SmallSidebar,
   Menu,
 };

@@ -104,7 +104,6 @@ const newsCategoryReducer = (state, action) => {
       };
     } else {
       const category = state.currentLocation.slice(1);
-      console.log(category);
       const filtered = state.newsCategories[category].filter((item) => {
         return item.title.toLowerCase().includes(action.payload.toLowerCase());
       });
@@ -123,6 +122,7 @@ const newsCategoryReducer = (state, action) => {
       favoritesArray: [...state.favoritesArray, { ...item }],
     };
   }
+  // Remove from favorites
   if (action.type === REMOVE_FROM_FAVORITES) {
     return {
       ...state,
