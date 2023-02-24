@@ -14,7 +14,7 @@ import { v4 as uuidv4 } from "uuid";
 
 const newsCategoryReducer = (state, action) => {
   if (action.type === GET_NEWS_CATEGORY_BEGIN) {
-    return { ...state, newsCategoryLoading: true };
+    return { ...state, newsCategoryLoading: true, newsCategoryError: false };
   }
   if (action.type === GET_NEWS_CATEGORY_ERROR) {
     return { ...state, newsCategoryLoading: false, newsCategoryError: true };
