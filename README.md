@@ -1,7 +1,7 @@
 ## Start project locally
 
 ```sh
-npm run install && npm start
+npm install && npm start
 ```
 
 ## Technologies
@@ -14,7 +14,12 @@ npm run install && npm start
 
 Fetch data from two different endpoints.
 The API has a request limit, so if You run out of requests, simply change the API key =>
+
+1.Endpoint
 "src/context/newsCategoryContext.js"
+
+2.Endpoint
+"src/hooks/useFetchInfinite.tsx"
 
 Top headlines => https://newsapi.org/v2/top-headlines?country=us&category=$business&apiKey=?
 

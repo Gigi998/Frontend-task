@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { api6 } from "../helpers/urls";
+import { api1, api2, api3, api4, api5, api6, api7 } from "../helpers/urls";
 
 const useFetchInfinite = (pageNumber) => {
   const [loading, setLoading] = useState(true);
@@ -13,7 +13,8 @@ const useFetchInfinite = (pageNumber) => {
     setError(false);
     let cancel;
     axios({
-      url: `https://newsapi.org/v2/everything?q=latest&sortBy=publishedAt&pageSize=8&page=${pageNumber}&apiKey=${api7}`,
+      // Change api key here
+      url: `https://newsapi.org/v2/everything?q=latest&sortBy=publishedAt&pageSize=8&page=${pageNumber}&apiKey=${api1}`,
       method: "GET",
       headers: {
         accept: "application/json",
