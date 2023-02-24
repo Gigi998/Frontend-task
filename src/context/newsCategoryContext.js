@@ -27,7 +27,10 @@ import { categoriesArray } from "../helpers/navLinks";
 
 const initialState = {
   newsCategoryLoading: false,
-  newsCategoryError: false,
+  newsCategoryError: {
+    error: false,
+    msg: "",
+  },
   newsArray: [],
   newsCategories: {
     business: [],
@@ -63,7 +66,10 @@ export const NewsCategoryProvider = ({ children }) => {
         },
       });
     } catch (error) {
-      dispatch({ type: GET_NEWS_CATEGORY_ERROR });
+      dispatch({ type: GET_NEWS_CATEGORY_ERROR, payload: error.message });
+      if (error.message === "Request failed with status code 429") {
+        console.log("You run out of the requests, change the api key");
+      }
     }
   };
   // Fetch data

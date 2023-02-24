@@ -5,7 +5,8 @@ import { useLocation } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 
 const CategoryPageComp = ({ newsCategory }) => {
-  const { getCurrentLocation, newsCategoryLoading } = useNewsCategoryContext();
+  const { getCurrentLocation, newsCategoryLoading, newsCategoryError } =
+    useNewsCategoryContext();
 
   const location = useLocation();
 
@@ -15,6 +16,18 @@ const CategoryPageComp = ({ newsCategory }) => {
 
   if (newsCategoryLoading) {
     return <Loading />;
+  }
+
+  // Error handling
+  if (newsCategoryError.error === true) {
+    if (newsCategoryError.msg === "Request failed with status code 429") {
+      return (
+        <h2 className="fav-title">
+          You run out of the requests, change the api key!
+        </h2>
+      );
+    }
+    return <h2 className="fav-title">{newsCategoryError.msg}</h2>;
   }
 
   return (

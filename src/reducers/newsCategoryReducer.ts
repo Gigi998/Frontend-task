@@ -14,10 +14,26 @@ import { v4 as uuidv4 } from "uuid";
 
 const newsCategoryReducer = (state, action) => {
   if (action.type === GET_NEWS_CATEGORY_BEGIN) {
-    return { ...state, newsCategoryLoading: true, newsCategoryError: false };
+    return {
+      ...state,
+      newsCategoryLoading: true,
+      newsCategoryError: {
+        ...state.newsCategoryError,
+        error: false,
+        msg: "",
+      },
+    };
   }
   if (action.type === GET_NEWS_CATEGORY_ERROR) {
-    return { ...state, newsCategoryLoading: false, newsCategoryError: true };
+    return {
+      ...state,
+      newsCategoryLoading: false,
+      newsCategoryError: {
+        ...state.newsCategoryError,
+        error: true,
+        msg: action.payload,
+      },
+    };
   }
   // Fetch news from each category
   if (action.type === GET_NEWS_CATEGORY_SUCCESS) {

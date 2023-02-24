@@ -13,6 +13,7 @@ import { v4 as uuidv4 } from "uuid";
 const HomePage = () => {
   const {
     newsCategoryLoading,
+    newsCategoryError,
     newsArray,
     query,
     filterArray,
@@ -28,6 +29,17 @@ const HomePage = () => {
 
   if (newsCategoryLoading) {
     return <Loading />;
+  }
+
+  if (newsCategoryError.error === true) {
+    if (newsCategoryError.msg === "Request failed with status code 429") {
+      return (
+        <h2 className="fav-title">
+          You run out of the requests, change the api key!
+        </h2>
+      );
+    }
+    return <h2 className="fav-title">{newsCategoryError.msg}</h2>;
   }
 
   // All articles array
