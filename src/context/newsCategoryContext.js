@@ -13,7 +13,16 @@ import {
   REMOVE_DUPLICATES,
   REMOVE_FROM_FAVORITES,
 } from "../helpers/actions";
-import { urlCategory, api6 } from "../helpers/urls";
+import {
+  urlCategory,
+  api7,
+  api6,
+  api5,
+  api4,
+  api3,
+  api2,
+  api1,
+} from "../helpers/urls";
 import { categoriesArray } from "../helpers/navLinks";
 
 const initialState = {
@@ -60,6 +69,7 @@ export const NewsCategoryProvider = ({ children }) => {
   // Fetch data
   useEffect(() => {
     categoriesArray.forEach((cat) => {
+      // Change api key here
       return fetchByCategory(urlCategory, cat, api6);
     });
   }, []);
