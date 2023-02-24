@@ -1,4 +1,4 @@
-import React, { useContext, useReducer } from "react";
+import React, { useContext, useReducer, useEffect } from "react";
 import mobileLayoutReducer from "../reducers/mobileLayoutReducer";
 import {
   IS_MOBILE_LAYOUT,
@@ -6,6 +6,7 @@ import {
   IS_SIDEBAR_OPEN,
   CLOSE_SIDEBAR,
 } from "../helpers/actions";
+import { useMediaQuery } from "react-responsive";
 
 const initialState = {
   isMobile: false,
@@ -17,31 +18,27 @@ const MobileLayoutContext = React.createContext();
 
 export const MobileLayoutProvider = ({ children }) => {
   const [state, dispatch] = useReducer(mobileLayoutReducer, initialState);
+  const mobile = useMediaQuery({ maxWidth: 650 });
 
   const toggleActiveComp = (value) => {
     dispatch({ type: TOGGLE_COMP, payload: value });
-  };
-
-  const setIsMobile = (value) => {
-    dispatch({ type: IS_MOBILE_LAYOUT, payload: value });
   };
 
   const toggleSidebar = () => {
     dispatch({ type: IS_SIDEBAR_OPEN });
   };
 
-  const closeSidebar = () => {
+  useEffect(() => {
+    dispatch({ type: IS_MOBILE_LAYOUT, payload: mobile });
     dispatch({ type: CLOSE_SIDEBAR });
-  };
+  }, [mobile]);
 
   return (
     <MobileLayoutContext.Provider
       value={{
         ...state,
         toggleActiveComp,
-        setIsMobile,
         toggleSidebar,
-        closeSidebar,
       }}
     >
       {children}

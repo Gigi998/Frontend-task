@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Navbar, Search, Sidebar, Menu } from "../src/components";
 import {
@@ -13,18 +13,9 @@ import {
   Error,
 } from "../src/pages";
 import { useMobileLayoutContext } from "./context/mobileLayoutContext";
-import { useMediaQuery } from "react-responsive";
 
 function App() {
-  const { isMobile, isSidebarOpen, setIsMobile, closeSidebar } =
-    useMobileLayoutContext();
-
-  const mobile = useMediaQuery({ maxWidth: 650 });
-
-  useEffect(() => {
-    setIsMobile(mobile);
-    closeSidebar();
-  }, [mobile]);
+  const { isMobile, isSidebarOpen } = useMobileLayoutContext();
 
   return (
     <BrowserRouter>

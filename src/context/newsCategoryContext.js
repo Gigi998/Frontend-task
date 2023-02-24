@@ -1,4 +1,4 @@
-import React, { useContext, useReducer } from "react";
+import React, { useContext, useReducer, useEffect } from "react";
 import axios from "axios";
 import newsCategoryReducer from "../reducers/newsCategoryReducer";
 import {
@@ -13,6 +13,8 @@ import {
   REMOVE_DUPLICATES,
   REMOVE_FROM_FAVORITES,
 } from "../helpers/actions";
+import { urlCategory, api6 } from "../helpers/urls";
+import { categoriesArray } from "../helpers/navLinks";
 
 const initialState = {
   newsCategoryLoading: false,
@@ -26,10 +28,10 @@ const initialState = {
     sport: [],
     technology: [],
   },
-  // query: "",
-  // filterArray: [],
-  // currentLocation: "",
-  // favoritesArray: [],
+  query: "",
+  filterArray: [],
+  currentLocation: "",
+  favoritesArray: [],
 };
 
 const NewsCategoryContext = React.createContext();
@@ -55,29 +57,29 @@ export const NewsCategoryProvider = ({ children }) => {
       dispatch({ type: GET_NEWS_CATEGORY_ERROR });
     }
   };
+  // Fetch data
+  useEffect(() => {
+    categoriesArray.forEach((cat) => {
+      return fetchByCategory(urlCategory, cat, api6);
+    });
+  }, []);
 
-  const sortLatestNews = () => {
-    dispatch({ type: SORT_LATEST_NEWS });
-  };
-
-  const getNewsArray = () => {
+  // Merge, sort by date and remove duplicates
+  useEffect(() => {
     dispatch({ type: GET_NEWS_ARRAY });
-  };
+    dispatch({ type: SORT_LATEST_NEWS });
+    dispatch({ type: REMOVE_DUPLICATES });
+  }, [state.newsCategories]);
 
+  const addToFavorites = (id) => {
+    dispatch({ type: ADD_TO_FAVORITES, payload: id });
+  };
   const handleSearch = (value) => {
     dispatch({ type: HANDLE_SEARCH, payload: value });
   };
 
   const getCurrentLocation = (loc) => {
     dispatch({ type: GET_CURRENT_LOCATION, payload: loc });
-  };
-
-  const addToFavorites = (id) => {
-    dispatch({ type: ADD_TO_FAVORITES, payload: id });
-  };
-
-  const removeDuplicates = () => {
-    dispatch({ type: REMOVE_DUPLICATES });
   };
 
   const removeFromFavorites = (id) => {
@@ -89,12 +91,9 @@ export const NewsCategoryProvider = ({ children }) => {
       value={{
         ...state,
         fetchByCategory,
-        sortLatestNews,
-        getNewsArray,
         handleSearch,
         getCurrentLocation,
         addToFavorites,
-        removeDuplicates,
         removeFromFavorites,
       }}
     >

@@ -7,8 +7,6 @@ import {
 } from "../components";
 import { useNewsCategoryContext } from "../context/newsCategoryContext";
 import { useMobileLayoutContext } from "../context/mobileLayoutContext";
-import { urlCategory, api5 } from "../helpers/urls";
-import { categoriesArray } from "../helpers/navLinks";
 import { useLocation } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 
@@ -18,12 +16,7 @@ const HomePage = () => {
     newsArray,
     query,
     filterArray,
-    fetchByCategory,
-    getNewsArray,
-    sortLatestNews,
     getCurrentLocation,
-    removeDuplicates,
-    newsCategories,
   } = useNewsCategoryContext();
   const { activeComp, isMobile } = useMobileLayoutContext();
 
@@ -33,22 +26,11 @@ const HomePage = () => {
     getCurrentLocation(location.pathname);
   }, [location.pathname]);
 
-  useEffect(() => {
-    categoriesArray.forEach((cat) => {
-      return fetchByCategory(urlCategory, cat, api5);
-    });
-  }, []);
-
-  useEffect(() => {
-    getNewsArray();
-    sortLatestNews();
-    removeDuplicates();
-  }, [newsCategories]);
-
   if (newsCategoryLoading) {
     return <Loading />;
   }
 
+  // All articles array
   const Articles = (query === "" ? newsArray : filterArray)
     .slice(0, 16)
     .map((item) => {

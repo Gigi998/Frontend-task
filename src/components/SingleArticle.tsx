@@ -33,7 +33,7 @@ const SingleArtilce = ({ author, title, urlToImage, category, id }) => {
       {urlToImage === null ? (
         <img src={DefaultImg} alt="something" />
       ) : (
-        <img src={urlToImage} alt="something" />
+        <img src={urlToImage} alt="no img" />
       )}
       <div className="info-container">
         <h2 className="category">
