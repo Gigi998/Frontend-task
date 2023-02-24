@@ -26,10 +26,10 @@ const initialState = {
     sport: [],
     technology: [],
   },
-  query: "",
-  filterArray: [],
-  currentLocation: "",
-  favoritesArray: [],
+  // query: "",
+  // filterArray: [],
+  // currentLocation: "",
+  // favoritesArray: [],
 };
 
 const NewsCategoryContext = React.createContext();
