@@ -13,7 +13,7 @@ const useFetchInfinite = (pageNumber) => {
     setError(false);
     let cancel;
     axios({
-      url: `https://newsapi.org/v2/everything?q=latest&sortBy=publishedAt&pageSize=8&page=${pageNumber}&apiKey=${api6}`,
+      url: `https://newsapi.org/v2/everything?q=latest&sortBy=publishedAt&pageSize=8&page=${pageNumber}&apiKey=${api7}`,
       method: "GET",
       headers: {
         accept: "application/json",

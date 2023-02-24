@@ -70,7 +70,7 @@ export const NewsCategoryProvider = ({ children }) => {
   useEffect(() => {
     categoriesArray.forEach((cat) => {
       // Change api key here
-      return fetchByCategory(urlCategory, cat, api6);
+      return fetchByCategory(urlCategory, cat, api1);
     });
   }, []);
 
