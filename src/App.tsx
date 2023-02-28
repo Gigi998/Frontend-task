@@ -15,7 +15,9 @@ import {
 import { useMobileLayoutContext } from "./context/mobileLayoutContext";
 
 function App() {
-  const { isMobile, isSidebarOpen } = useMobileLayoutContext();
+  const {
+    state: { isMobile, isSidebarOpen },
+  } = useMobileLayoutContext();
 
   return (
     <BrowserRouter>

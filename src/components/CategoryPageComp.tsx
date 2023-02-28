@@ -3,10 +3,17 @@ import { SingleArticle, Loading } from "../components";
 import { useNewsCategoryContext } from "../context/newsCategoryContext";
 import { useLocation } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
+import { NewsArrayType } from "../context/newsCategoryContext";
 
-const CategoryPageComp = ({ newsCategory }) => {
-  const { getCurrentLocation, newsCategoryLoading, newsCategoryError } =
-    useNewsCategoryContext();
+type CategoryPageType = {
+  newsCategory: NewsArrayType[];
+};
+
+const CategoryPageComp = ({ newsCategory }: CategoryPageType) => {
+  const {
+    getCurrentLocation,
+    state: { newsCategoryLoading, newsCategoryError },
+  } = useNewsCategoryContext();
 
   const location = useLocation();
 

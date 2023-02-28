@@ -1,6 +1,6 @@
 import React from "react";
 
-export const formatTime = (date) => {
+export const formatTime = (date: string) => {
   let newDate = new Date(Date.parse(date));
   let hoursMin = newDate.toLocaleString("en-GB", {
     hour: "2-digit",

@@ -1,4 +1,4 @@
-import React, { useContext, useReducer, useEffect } from "react";
+import React, { useContext, useReducer, useEffect, ReactNode } from "react";
 import axios from "axios";
 import newsCategoryReducer from "../reducers/newsCategoryReducer";
 import {
@@ -22,10 +22,53 @@ import {
   api3,
   api2,
   api1,
+  api8,
 } from "../helpers/urls";
 import { categoriesArray } from "../helpers/navLinks";
 
-const initialState = {
+type NewsProviderProps = {
+  children: ReactNode;
+};
+
+export type NewsArrayType = {
+  author: string;
+  title: string;
+  description: null | string;
+  urlToImage: null | string;
+  publishedAt: string;
+  category: string;
+  id: string;
+  inFavorites: boolean;
+};
+
+export type CategoryStateType = {
+  newsCategoryLoading: boolean;
+  newsCategoryError: { error: boolean; msg: string };
+  newsArray: NewsArrayType[];
+  newsCategories: {
+    business: NewsArrayType[];
+    general: NewsArrayType[];
+    health: NewsArrayType[];
+    science: NewsArrayType[];
+    sport: NewsArrayType[];
+    technology: NewsArrayType[];
+  };
+  query: string;
+  filterArray: NewsArrayType[];
+  currentLocation: string;
+  favoritesArray: NewsArrayType[];
+};
+
+type NewsCategoryContext = {
+  state: CategoryStateType;
+  fetchByCategory: (url: string, category: string, api: string) => void;
+  addToFavorites: (id: string) => void;
+  handleSearch: (value: string) => void;
+  getCurrentLocation: (loc: string) => void;
+  removeFromFavorites: (id: string) => void;
+};
+
+const initialState: CategoryStateType = {
   newsCategoryLoading: false,
   newsCategoryError: {
     error: false,
@@ -46,12 +89,16 @@ const initialState = {
   favoritesArray: [],
 };
 
-const NewsCategoryContext = React.createContext();
+const NewsCategoryContext = React.createContext({} as NewsCategoryContext);
 
-export const NewsCategoryProvider = ({ children }) => {
+export const NewsCategoryProvider = ({ children }: NewsProviderProps) => {
   const [state, dispatch] = useReducer(newsCategoryReducer, initialState);
 
-  const fetchByCategory = async (url, category, api) => {
+  const fetchByCategory = async (
+    url: string,
+    category: string,
+    api: string
+  ) => {
     dispatch({ type: GET_NEWS_CATEGORY_BEGIN });
     try {
       const response = await axios.get(
@@ -76,7 +123,7 @@ export const NewsCategoryProvider = ({ children }) => {
   useEffect(() => {
     categoriesArray.forEach((cat) => {
       // Change api key here
-      return fetchByCategory(urlCategory, cat, api1);
+      return fetchByCategory(urlCategory, cat, api8);
     });
   }, []);
 
@@ -87,25 +134,25 @@ export const NewsCategoryProvider = ({ children }) => {
     dispatch({ type: REMOVE_DUPLICATES });
   }, [state.newsCategories]);
 
-  const addToFavorites = (id) => {
+  const addToFavorites = (id: string) => {
     dispatch({ type: ADD_TO_FAVORITES, payload: id });
   };
-  const handleSearch = (value) => {
+  const handleSearch = (value: string) => {
     dispatch({ type: HANDLE_SEARCH, payload: value });
   };
 
-  const getCurrentLocation = (loc) => {
+  const getCurrentLocation = (loc: string) => {
     dispatch({ type: GET_CURRENT_LOCATION, payload: loc });
   };
 
-  const removeFromFavorites = (id) => {
+  const removeFromFavorites = (id: string) => {
     dispatch({ type: REMOVE_FROM_FAVORITES, payload: id });
   };
 
   return (
     <NewsCategoryContext.Provider
       value={{
-        ...state,
+        state,
         fetchByCategory,
         handleSearch,
         getCurrentLocation,

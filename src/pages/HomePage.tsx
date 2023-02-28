@@ -12,14 +12,18 @@ import { v4 as uuidv4 } from "uuid";
 
 const HomePage = () => {
   const {
-    newsCategoryLoading,
-    newsCategoryError,
-    newsArray,
-    query,
-    filterArray,
+    state: {
+      newsCategoryLoading,
+      newsCategoryError,
+      newsArray,
+      query,
+      filterArray,
+    },
     getCurrentLocation,
   } = useNewsCategoryContext();
-  const { activeComp, isMobile } = useMobileLayoutContext();
+  const {
+    state: { activeComp, isMobile },
+  } = useMobileLayoutContext();
 
   const location = useLocation();
 

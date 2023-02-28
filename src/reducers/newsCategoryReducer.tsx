@@ -11,8 +11,53 @@ import {
   REMOVE_FROM_FAVORITES,
 } from "../helpers/actions";
 import { v4 as uuidv4 } from "uuid";
+import {
+  CategoryStateType,
+  NewsArrayType,
+} from "../context/newsCategoryContext";
 
-const newsCategoryReducer = (state, action) => {
+type Actions =
+  | {
+      type: "GET_NEWS_CATEGORY_BEGIN";
+    }
+  | {
+      type: "GET_NEWS_CATEGORY_ERROR";
+      payload: string;
+    }
+  | {
+      type: "GET_NEWS_CATEGORY_SUCCESS";
+      payload: { category: string; list: NewsArrayType[] };
+    }
+  | {
+      type: "SORT_LATEST_NEWS";
+    }
+  | {
+      type: "GET_NEWS_ARRAY";
+    }
+  | {
+      type: "REMOVE_DUPLICATES";
+    }
+  | {
+      type: "GET_CURRENT_LOCATION";
+      payload: string;
+    }
+  | {
+      type: "HANDLE_SEARCH";
+      payload: string;
+    }
+  | {
+      type: "ADD_TO_FAVORITES";
+      payload: string;
+    }
+  | {
+      type: "REMOVE_FROM_FAVORITES";
+      payload: string;
+    };
+
+const newsCategoryReducer = (
+  state: CategoryStateType,
+  action: Actions
+): CategoryStateType => {
   if (action.type === GET_NEWS_CATEGORY_BEGIN) {
     return {
       ...state,
@@ -147,7 +192,7 @@ const newsCategoryReducer = (state, action) => {
       ],
     };
   }
-  throw new Error(`No Matching "${action.type}" - action type`);
+  return state;
 };
 
 export default newsCategoryReducer;

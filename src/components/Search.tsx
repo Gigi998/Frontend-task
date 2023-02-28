@@ -1,4 +1,4 @@
-import React from "react";
+import React, { SyntheticEvent } from "react";
 import SearchLogo from "../assets/img/Search.svg";
 import { useNewsCategoryContext } from "../context/newsCategoryContext";
 import { useMobileLayoutContext } from "../context/mobileLayoutContext";
@@ -6,10 +6,16 @@ import Close from "../assets/img/Close.svg";
 import Menu from "../assets/img/Menu.svg";
 
 const Search = () => {
-  const { query, handleSearch } = useNewsCategoryContext();
-  const { toggleSidebar, isSidebarOpen } = useMobileLayoutContext();
+  const {
+    state: { query },
+    handleSearch,
+  } = useNewsCategoryContext();
+  const {
+    toggleSidebar,
+    state: { isSidebarOpen },
+  } = useMobileLayoutContext();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: SyntheticEvent) => {
     e.preventDefault();
   };
 

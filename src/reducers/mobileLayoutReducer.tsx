@@ -4,8 +4,25 @@ import {
   IS_SIDEBAR_OPEN,
   CLOSE_SIDEBAR,
 } from "../helpers/actions";
+import { StateType } from "../context/mobileLayoutContext";
 
-const mobileLayoutReducer = (state, action) => {
+type Action =
+  | {
+      type: "TOGGLE_COMP";
+      payload: "latest" | "featured";
+    }
+  | {
+      type: "IS_MOBILE_LAYOUT";
+      payload: boolean;
+    }
+  | {
+      type: "IS_SIDEBAR_OPEN";
+    }
+  | {
+      type: "CLOSE_SIDEBAR";
+    };
+
+const mobileLayoutReducer = (state: StateType, action: Action): StateType => {
   switch (action.type) {
     case TOGGLE_COMP:
       return {
@@ -29,7 +46,7 @@ const mobileLayoutReducer = (state, action) => {
       };
     default:
   }
-  throw new Error(`No Matching "${action.type}" - action type`);
+  return state;
 };
 
 export default mobileLayoutReducer;

@@ -20,6 +20,8 @@ export const api6 = "872c19404fea43a79c8c5bd4bcb5366f";
 // api7
 export const api7 = "d32503a4098542829c15155f05281c15";
 
+export const api8 = "5c45d6be5f2146d8b5f98e67f9b4fd71";
+
 // Fetch by category api
 export const urlCategory = `https://newsapi.org/v2/top-headlines?country=us&`;
 

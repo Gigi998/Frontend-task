@@ -4,7 +4,10 @@ import { NavLink } from "react-router-dom";
 import { useMobileLayoutContext } from "../context/mobileLayoutContext";
 
 const Sidebar = () => {
-  const { isSidebarOpen, toggleSidebar } = useMobileLayoutContext();
+  const {
+    state: { isSidebarOpen },
+    toggleSidebar,
+  } = useMobileLayoutContext();
 
   return (
     <div className={isSidebarOpen ? "sidebar sidebar-mobile" : "sidebar"}>

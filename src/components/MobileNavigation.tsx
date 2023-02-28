@@ -2,7 +2,10 @@ import React from "react";
 import { useMobileLayoutContext } from "../context/mobileLayoutContext";
 
 const MobileNavigation = () => {
-  const { toggleActiveComp, activeComp } = useMobileLayoutContext();
+  const {
+    toggleActiveComp,
+    state: { activeComp },
+  } = useMobileLayoutContext();
 
   return (
     <div className="nav-small">

@@ -3,8 +3,9 @@ import { useNewsCategoryContext } from "../context/newsCategoryContext";
 import { Loading, CategoryPageComp } from "../components";
 
 const Business = () => {
-  const { newsCategoryLoading, newsCategories, query, filterArray } =
-    useNewsCategoryContext();
+  const {
+    state: { newsCategoryLoading, newsCategories, query, filterArray },
+  } = useNewsCategoryContext();
 
   if (newsCategoryLoading) {
     return <Loading />;

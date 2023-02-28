@@ -3,7 +3,9 @@ import { useMobileLayoutContext } from "../context/mobileLayoutContext";
 import { Sidebar, Search } from "../components";
 
 const Menu = () => {
-  const { isSidebarOpen } = useMobileLayoutContext();
+  const {
+    state: { isSidebarOpen },
+  } = useMobileLayoutContext();
 
   return (
     <div

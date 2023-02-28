@@ -1,19 +1,32 @@
-import React, { useEffect } from "react";
+import React from "react";
 import DefaultImg from "../assets/img/NoImage.jpg";
 import { BsBookmark } from "react-icons/bs";
 import { useNewsCategoryContext } from "../context/newsCategoryContext";
 import Close from "../assets/img/Close.svg";
 
-const SingleArtilce = ({ author, title, urlToImage, category, id }) => {
+type SingleArticleProps = {
+  author: string;
+  title: string;
+  urlToImage: null | string;
+  category: string;
+  id: string;
+};
+
+const SingleArtilce = ({
+  author,
+  title,
+  urlToImage,
+  category,
+  id,
+}: SingleArticleProps) => {
   const {
     addToFavorites,
-    favoritesArray,
-    currentLocation,
     removeFromFavorites,
+    state: { favoritesArray, currentLocation },
   } = useNewsCategoryContext();
 
   // Check if item is already in favorites array
-  const handleClick = (title) => {
+  const handleClick = (title: string) => {
     if (favoritesArray.length === 0) {
       addToFavorites(title);
     } else {
