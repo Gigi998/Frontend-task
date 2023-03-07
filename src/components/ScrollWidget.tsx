@@ -7,11 +7,11 @@ const ScrollWidget = () => {
   const [pageNumber, setPageNumber] = useState(1);
   const { loading, hasMore, newsList } = useFetchInfinite(pageNumber);
 
-  const observer = useRef();
+  const observer = useRef<IntersectionObserver>();
 
   // Checking if is interesecting
   const lastElement = useCallback(
-    (node) => {
+    (node: HTMLDivElement) => {
       if (loading) return;
       if (observer.current) observer.current.disconnect();
       observer.current = new IntersectionObserver((entries) => {
@@ -36,8 +36,8 @@ const ScrollWidget = () => {
           const { title, publishedAt } = n;
           if (newsList.length === index + 1) {
             return (
-              <div className="single-news" key={index}>
-                <h1 ref={lastElement}>{formatTime(publishedAt)}</h1>
+              <div ref={lastElement} className="single-news" key={index}>
+                <h1>{formatTime(publishedAt)}</h1>
                 <p>{title.length > 40 ? title.slice(0, 40) : `${title}...`}</p>
               </div>
             );
