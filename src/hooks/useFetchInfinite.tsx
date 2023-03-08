@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { api1, api2, api3, api4, api5, api6, api7 } from "../helpers/urls";
 
-const useFetchInfinite = (pageNumber) => {
+const useFetchInfinite = (pageNumber: number) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [newsList, setNewsList] = useState([]);
@@ -19,6 +19,7 @@ const useFetchInfinite = (pageNumber) => {
       headers: {
         accept: "application/json",
       },
+      // Canceling previous requests
       cancelToken: new axios.CancelToken((c) => (cancel = c)),
     })
       .then((res) => {
@@ -29,9 +30,11 @@ const useFetchInfinite = (pageNumber) => {
         setLoading(false);
       })
       .catch((e) => {
+        // If is axios cancelation error ignore
         if (axios.isCancel(e)) return;
         setError(true);
       });
+    // Clean up function it runs before useEffect starts
     return () => cancel();
   }, [pageNumber]);
 

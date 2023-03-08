@@ -12,6 +12,7 @@ const ScrollWidget = () => {
   // Checking if is interesecting
   const lastElement = useCallback(
     (node: HTMLDivElement) => {
+      // While we are loading we don't want to check if is interesecting
       if (loading) return;
       if (observer.current) observer.current.disconnect();
       observer.current = new IntersectionObserver((entries) => {
@@ -34,6 +35,7 @@ const ScrollWidget = () => {
       <div className="content">
         {newsList.map((n, index) => {
           const { title, publishedAt } = n;
+          // Call last element only if is last element
           if (newsList.length === index + 1) {
             return (
               <div ref={lastElement} className="single-news" key={index}>
@@ -41,6 +43,7 @@ const ScrollWidget = () => {
                 <p>{title.length > 40 ? title.slice(0, 40) : `${title}...`}</p>
               </div>
             );
+            // Otherwise return div without callback
           } else {
             return (
               <div className="single-news" key={index}>

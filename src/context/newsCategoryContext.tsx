@@ -25,6 +25,7 @@ import {
   api8,
 } from "../helpers/urls";
 import { categoriesArray } from "../helpers/navLinks";
+import { getFromLocStor } from "../helpers/localStorage";
 
 type NewsProviderProps = {
   children: ReactNode;
@@ -86,7 +87,7 @@ const initialState: CategoryStateType = {
   query: "",
   filterArray: [],
   currentLocation: "",
-  favoritesArray: [],
+  favoritesArray: getFromLocStor(),
 };
 
 const NewsCategoryContext = React.createContext({} as NewsCategoryContext);
