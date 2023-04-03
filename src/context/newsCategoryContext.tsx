@@ -124,7 +124,7 @@ export const NewsCategoryProvider = ({ children }: NewsProviderProps) => {
   useEffect(() => {
     categoriesArray.forEach((cat) => {
       // Change api key here
-      return fetchByCategory(urlCategory, cat, api8);
+      return fetchByCategory(urlCategory, cat, process.env.REACT_APP_API_KEY);
     });
   }, []);
 
