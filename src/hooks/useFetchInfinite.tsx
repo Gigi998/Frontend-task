@@ -14,7 +14,7 @@ const useFetchInfinite = (pageNumber: number) => {
     let cancel;
     axios({
       // Change api key here
-      url: `https://newsapi.org/v2/everything?q=latest&sortBy=publishedAt&pageSize=8&page=${pageNumber}&apiKey=${process.env.REACT_APP_API_KEY}`,
+      url: `https://newsapi.org/v2/everything?q=latest&sortBy=publishedAt&pageSize=8&page=${pageNumber}&apiKey=${api7}`,
       method: "GET",
       headers: {
         accept: "application/json",

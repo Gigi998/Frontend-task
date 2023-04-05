@@ -6,7 +6,7 @@ npm install && npm start
 
 ## Technologies
 
-- State => useReducer
+- State => useContext/useReducer
 - Styling => SCSS
 - React-router
 

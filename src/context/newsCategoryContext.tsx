@@ -120,11 +120,19 @@ export const NewsCategoryProvider = ({ children }: NewsProviderProps) => {
       }
     }
   };
+  // // Fetch data
+  // useEffect(() => {
+  //   categoriesArray.forEach((cat) => {
+  //     // Change api key here
+  //     return fetchByCategory(urlCategory, cat, process.env.REACT_APP_API_KEY);
+  //   });
+  // }, []);
+
   // Fetch data
   useEffect(() => {
     categoriesArray.forEach((cat) => {
       // Change api key here
-      return fetchByCategory(urlCategory, cat, process.env.REACT_APP_API_KEY);
+      return fetchByCategory(urlCategory, cat, api7);
     });
   }, []);
 
