@@ -34,7 +34,7 @@ const useFetchInfinite = (pageNumber: number) => {
         if (axios.isCancel(e)) return;
         setError(true);
       });
-    // Clean up function it runs before useEffect starts
+    // Clean up function it runs when component unmount
     return () => cancel();
   }, [pageNumber]);
 
